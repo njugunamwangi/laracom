@@ -9,4 +9,4 @@
 - [Laravel](https://laravel.com).
 - [Livewire](https://livewire.laravel.com).
 - [TailwindCSS](https://tailwindcss.com).
-- [Filament PHP 3](https://filamentphp.com).
+- [FilamentPHP V3](https://filamentphp.com).
