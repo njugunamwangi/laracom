@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('website')->unique();
             $table->integer('featured_image_id');
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->softDeletes();
         });
     }
