@@ -81,6 +81,8 @@
 
             {{ $slot }}
 
+            <x-layout.footer></x-layout.footer>
+
         </div>
 
         @livewireScripts
