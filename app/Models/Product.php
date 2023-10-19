@@ -31,8 +31,9 @@ class Product extends Model
         'created_by',
         'updated_by',
         'deleted_by',
+        'brand_id',
         'meta_title',
-        'meta_description'
+        'meta_description',
     ];
 
     public function getSlugOptions(): SlugOptions
@@ -63,7 +64,7 @@ class Product extends Model
 
     public function brand(): BelongsTo
     {
-        return $this->belongsTo(Brand::class);
+        return $this->belongsTo(Brand::class, 'brand_id');
     }
 
     public function categories(): BelongsToMany

@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
+use App\Models\Brand;
 use App\Models\Product;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
@@ -91,6 +92,9 @@ class ProductResource extends Resource
                             ->searchable(),
                         Forms\Components\Select::make('brand_id')
                             ->relationship('brand', 'brand')
+                            ->options(Brand::all()
+                                ->pluck('brand', 'id')
+                            )
                             ->required()
                             ->preload()
                             ->searchable(),
@@ -107,6 +111,9 @@ class ProductResource extends Resource
                     ->height(50)
                     ->sortable(),
                 Tables\Columns\TextColumn::make('product')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('brand.brand')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('model_name')
                     ->toggleable(isToggledHiddenByDefault: true)

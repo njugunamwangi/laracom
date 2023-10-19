@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Brand;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -27,6 +28,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class, 'created_by')->nullable();
             $table->foreignIdFor(User::class, 'updated_by')->nullable();
             $table->foreignIdFor(User::class, 'deleted_by')->nullable();
+            $table->foreignId('brand_id')->references('id')->on('brands');
             $table->string('meta_title', 2000)->nullable();
             $table->string('meta_description', 2000)->nullable();
             $table->softDeletes();
