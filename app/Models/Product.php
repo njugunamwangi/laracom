@@ -71,4 +71,12 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+
+    public function getDiscount() {
+        $diff = $this->list_price - $this->retail_price;
+
+        $percent = $diff / $this->list_price;
+
+        return '-' . round($percent * 100) . '%';
+    }
 }
