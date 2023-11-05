@@ -32,6 +32,8 @@ class ProductController extends Controller
         if (!$product->status) {
             throw new NotFoundHttpException;
         }
+
+        return view('components.product.view', compact('product'));
     }
 
     /**
