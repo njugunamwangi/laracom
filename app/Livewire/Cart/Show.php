@@ -38,6 +38,19 @@ class Show extends Component
         }
     }
 
+    public function removeItem(int $cartId)
+    {
+        $model = Cart::query()
+            ->where('id', '=', $cartId)
+            ->where('user_id', '=', auth()->user()->id)
+            ->first();
+
+        if ($model) {
+            $model->delete();
+            $this->dispatch('CartUpdated');
+        }
+    }
+
     public function render()
     {
         if (Auth::check()) {

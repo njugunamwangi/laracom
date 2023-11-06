@@ -54,7 +54,16 @@
                                 </div>
                             </div>
 
-                            <button class="select-none text-sm font-semibold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">Delete</button>
+                            <button wire:loading.attr="disabled"
+                                    wire:click="removeItem({{ $item->id }})"
+                                class="select-none text-sm font-semibold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">
+                                <span wire:loading.remove wire:target="removeItem({{ $item->id }})">
+                                    Delete
+                                </span>
+                                <span wire:loading wire:target="removeItem({{ $item->id }})">
+                                    Delete
+                                </span>
+                            </button>
                         </div>
 
                         <div class="ml-4 pt-3 md:ml-8 md:pt-2 lg:ml-16">
