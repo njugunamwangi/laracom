@@ -1,7 +1,7 @@
 <div>
     <div class="mb-6 flex flex-col gap-4 sm:mb-8 md:gap-6">
 
-        @if(strlen($cart) > 0)
+        @if($cart->count() > 0)
             @foreach($cart as $item)
                 <!-- product - start -->
                 <div class="flex flex-wrap gap-x-4 overflow-hidden rounded-lg border sm:gap-y-4 lg:gap-6">
@@ -75,36 +75,36 @@
 
             @endforeach
 
-                <!-- totals - start -->
-                <div class="flex flex-col items-end gap-4">
-                    <div class="w-full rounded-lg bg-gray-100 p-4 sm:max-w-xs">
-                        <div class="space-y-1">
-                            <div class="flex justify-between gap-4 text-gray-500">
-                                <span>Subtotal</span>
-                                <span>$129.99</span>
-                            </div>
-
-                            <div class="flex justify-between gap-4 text-gray-500">
-                                <span>Shipping</span>
-                                <span>$4.99</span>
-                            </div>
+            <!-- totals - start -->
+            <div class="flex flex-col items-end gap-4">
+                <div class="w-full rounded-lg bg-gray-100 p-4 sm:max-w-xs">
+                    <div class="space-y-1">
+                        <div class="flex justify-between gap-4 text-gray-500">
+                            <span>Subtotal</span>
+                            <span>$129.99</span>
                         </div>
 
-                        <div class="mt-4 border-t pt-4">
-                            <div class="flex items-start justify-between gap-4 text-gray-800">
-                                <span class="text-lg font-bold">Total</span>
-
-                                <span class="flex flex-col items-end">
-                                <span class="text-lg font-bold">$134.98 USD</span>
-                                <span class="text-sm text-gray-500">including VAT</span>
-                            </span>
-                            </div>
+                        <div class="flex justify-between gap-4 text-gray-500">
+                            <span>Shipping</span>
+                            <span>$4.99</span>
                         </div>
                     </div>
 
-                    <button class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Check out</button>
+                    <div class="mt-4 border-t pt-4">
+                        <div class="flex items-start justify-between gap-4 text-gray-800">
+                            <span class="text-lg font-bold">Total</span>
+
+                            <span class="flex flex-col items-end">
+                            <span class="text-lg font-bold">$134.98 USD</span>
+                            <span class="text-sm text-gray-500">including VAT</span>
+                        </span>
+                        </div>
+                    </div>
                 </div>
-                <!-- totals - end -->
+
+                <button class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Check out</button>
+            </div>
+            <!-- totals - end -->
 
         @else
             <div>Your cart is empty</div>
