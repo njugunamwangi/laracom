@@ -24,10 +24,8 @@
 
             {{ $slot }}
 
-            @if (session('message'))
-                <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400">
-                    {{ session('message') }}
-                </div>
+            @if (Session::has('message'))
+                <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
             @endif
 
             <x-layout.footer></x-layout.footer>
