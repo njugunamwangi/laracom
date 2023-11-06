@@ -85,7 +85,11 @@
                     </div>
 
                     <!-- buttons - start -->
-                    <livewire:add-to-cart />
+                    <div class="flex gap-2.5">
+                        <livewire:add-to-cart :product='$product' />
+
+                        <livewire:wishlist :product='$product'/>
+                    </div>
                     <!-- buttons - end -->
                 </div>
             </div>
@@ -94,7 +98,7 @@
                     <div class="mb-3 text-lg font-semibold text-gray-800">Description</div>
 
                     <p class="text-gray-500">
-                        Kes {{ $product->description }}
+                        {{ $product->description }}
                     </p>
                 </div>
             </div>
