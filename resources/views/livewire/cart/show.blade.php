@@ -41,7 +41,7 @@
                                 <input
                                     type="number"
                                     value="{{ $item->quantity }}"
-                                    step="none"
+                                    disabled
                                     class="w-full px-4 py-2 outline-none ring-inset ring-indigo-300 transition duration-100 focus:ring" />
 
                                 <div class="flex flex-col divide-y border-l">
