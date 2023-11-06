@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +29,6 @@ Route::middleware([
     })->name('dashboard');
 });
 
+
+Route::get('/cart', [SiteController::class, 'cart'])->name('cart');
 Route::get('/{product:slug}', [ProductController::class, 'show'])->name('product');
