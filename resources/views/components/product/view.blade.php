@@ -6,7 +6,7 @@
                 <div class="space-y-4">
                     <div class="relative overflow-hidden rounded-lg bg-gray-100">
                         <img
-                            src="{{ $product->image_id }}"
+                            src="{{ url('/storage/'.$product->productImage->path) }}"
                             loading="lazy" alt="{{ $product->product }}"
                             class="h-full w-full object-cover object-center"/>
 
@@ -64,10 +64,10 @@
                     <div class="mb-4">
                         <div class="flex items-end gap-2">
                             <span class="text-xl font-bold text-gray-800 md:text-2xl">
-                                Kes {{ $product->retail_price }}
+                                Kes {{ number_format($product->retail_price, 2) }}
                             </span>
                             <span class="mb-0.5 text-red-500 line-through">
-                                Kes {{ $product->list_price }}
+                                Kes {{ number_format($product->list_price, 2) }}
                             </span>
                         </div>
 
