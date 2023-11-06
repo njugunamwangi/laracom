@@ -10,4 +10,8 @@ class SiteController extends Controller
     public function cart(): View {
         return view('components.home.cart');
     }
+
+    public function checkout(): View {
+        return view('components.home.checkout');
+    }
 }
