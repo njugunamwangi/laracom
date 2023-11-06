@@ -25,11 +25,23 @@ class AddToCart extends Component
         } else {
 
             if ($this->product->where('id', $productId)->where('status', 1)->exists()) {
-                Cart::create([
-                    'user_id' => auth()->user()->id,
-                    'product_id' => $productId,
-                    'quantity' => 1
-                ]);
+
+                $model = Cart::query()
+                    ->where('user_id', '=', auth()->user()->id)
+                    ->where('product_id', '=', $productId)
+                    ->first();
+
+                if (!$model) {
+
+                    Cart::create([
+                        'user_id' => auth()->user()->id,
+                        'product_id' => $productId,
+                        'quantity' => 1
+                    ]);
+                    $this->dispatch('CartUpdated');
+                } else {
+                    session()->flash('message', 'Product already added to cart.');
+                }
             } else {
                 session()->flash('message', 'Product does not exist.');
             }
