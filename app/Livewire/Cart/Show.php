@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Show extends Component
 {
-    public $cart;
+    public $cart, $subTotal = 0, $shipping = 1000;
 
     public function incrementQuantity(int $cartId)
     {

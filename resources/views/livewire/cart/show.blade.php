@@ -67,7 +67,10 @@
                         </div>
 
                         <div class="ml-4 pt-3 md:ml-8 md:pt-2 lg:ml-16">
-                            <span class="block font-bold text-gray-800 md:text-lg">Kes {{ number_format( $item->product->retail_price * $item->quantity, 2 ) }}</span>
+                            <span class="block font-bold text-gray-800 md:text-lg">
+                                Kes {{ number_format( $item->product->retail_price * $item->quantity, 2 ) }}
+                                @php $subTotal += $item->product->retail_price * $item->quantity @endphp
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -81,12 +84,12 @@
                     <div class="space-y-1">
                         <div class="flex justify-between gap-4 text-gray-500">
                             <span>Subtotal</span>
-                            <span>$129.99</span>
+                            <span>Kes {{ number_format($subTotal, 2) }}</span>
                         </div>
 
                         <div class="flex justify-between gap-4 text-gray-500">
                             <span>Shipping</span>
-                            <span>$4.99</span>
+                            <span>Kes {{ number_format($shipping, 2) }}</span>
                         </div>
                     </div>
 
@@ -95,7 +98,7 @@
                             <span class="text-lg font-bold">Total</span>
 
                             <span class="flex flex-col items-end">
-                            <span class="text-lg font-bold">$134.98 USD</span>
+                            <span class="text-lg font-bold">Kes {{ number_format($subTotal + $shipping, 2) }}</span>
                             <span class="text-sm text-gray-500">including VAT</span>
                         </span>
                         </div>
