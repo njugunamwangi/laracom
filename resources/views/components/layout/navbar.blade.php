@@ -41,7 +41,12 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
 
-                <span class="hidden text-xs font-semibold text-gray-500 sm:block">Cart</span>
+                <div class="flex gap-2">
+                    <span class="hidden text-xs font-semibold text-gray-500 sm:block">Cart</span>
+                    <span class="flex flex-row text-xs font-semibold text-gray-500 sm:block">
+                        <livewire:cart.count />
+                    </span>
+                </div>
             </a>
 
             <button type="button" class="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-gray-100 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:hidden">
