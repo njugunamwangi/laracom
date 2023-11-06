@@ -40,4 +40,33 @@
             </div>
         </div>
     @endforeach
+
+    <!-- totals - start -->
+    <div class="flex flex-col items-end gap-4 pt-2">
+        <div class="w-full rounded-lg bg-gray-100 p-4 sm:max-w-xs">
+            <div class="space-y-1">
+                <div class="flex justify-between gap-4 text-gray-500">
+                    <span>Subtotal</span>
+                    <span>Kes {{ number_format($subTotal, 2) }}</span>
+                </div>
+
+                <div class="flex justify-between gap-4 text-gray-500">
+                    <span>Shipping</span>
+                    <span>Kes {{ number_format($shipping, 2) }}</span>
+                </div>
+            </div>
+
+            <div class="mt-4 border-t pt-4">
+                <div class="flex items-start justify-between gap-4 text-gray-800">
+                    <span class="text-lg font-bold">Total</span>
+
+                    <span class="flex flex-col items-end">
+                        <span class="text-lg font-bold">Kes {{ number_format($subTotal + $shipping, 2) }}</span>
+                        <span class="text-sm text-gray-500">including VAT</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- totals - end -->
 </div>
