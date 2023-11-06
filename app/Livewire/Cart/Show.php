@@ -10,6 +10,34 @@ class Show extends Component
 {
     public $cart;
 
+    public function incrementQuantity(int $cartId)
+    {
+        $model = Cart::query()
+            ->where('id', '=', $cartId)
+            ->where('user_id', '=', auth()->user()->id)
+            ->first();
+
+        if ($model) {
+
+            $model->increment('quantity');
+
+        }
+    }
+
+    public function decrementQuantity(int $cartId)
+    {
+        $model = Cart::query()
+            ->where('id', '=', $cartId)
+            ->where('user_id', '=', auth()->user()->id)
+            ->first();
+
+        if ($model) {
+
+            $model->decrement('quantity');
+
+        }
+    }
+
     public function render()
     {
         if (Auth::check()) {
