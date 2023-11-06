@@ -1,7 +1,7 @@
 <div>
     <div class="mb-6 flex flex-col gap-4 sm:mb-8 md:gap-6">
 
-        @if($cart->count() > 0)
+        @if($cart && $cart->count() > 0)
             @foreach($cart as $item)
                 <!-- product - start -->
                 <div class="flex flex-wrap gap-x-4 overflow-hidden rounded-lg border sm:gap-y-4 lg:gap-6">
@@ -105,7 +105,11 @@
                     </div>
                 </div>
 
-                <button class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Check out</button>
+                <a
+                    href="{{ route('checkout') }}"
+                    class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">
+                    Check out
+                </a>
             </div>
             <!-- totals - end -->
 
