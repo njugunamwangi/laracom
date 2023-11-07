@@ -4,7 +4,7 @@
             <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
                 <!-- text - start -->
                 <div class="mb-10 md:mb-16">
-                    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Basic Information</h2>
+                    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Shipping Information</h2>
                 </div>
                 <!-- text - end -->
 
@@ -89,8 +89,6 @@
 
                         <span class="text-sm text-gray-500">*Required</span>
                     </div>
-
-                    <p class="text-xs text-gray-400">By signing up to our newsletter you agree to our <a href="#" class="underline transition duration-100 hover:text-indigo-500 active:text-indigo-600">Privacy Policy</a>.</p>
                 </div>
                 <!-- form - end -->
             </div>
