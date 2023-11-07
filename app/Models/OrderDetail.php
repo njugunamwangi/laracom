@@ -10,6 +10,8 @@ class OrderDetail extends Model
     use HasFactory;
 
     protected $fillable = [
+        'name',
+        'email',
         'phone',
         'address1',
         'address2',
