@@ -88,7 +88,7 @@
                     <div class="flex gap-2.5">
                         <livewire:add-to-cart :product='$product' />
 
-                        <livewire:wishlist :product='$product'/>
+                        <livewire:add-to-wishlist :product='$product' />
                     </div>
                     <!-- buttons - end -->
                 </div>
