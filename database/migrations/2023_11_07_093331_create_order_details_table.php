@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('address1', 255);
-            $table->string('address2', 255);
+            $table->string('address2', 255)->nullable();
             $table->string('city', 255);
             $table->string('state', 45);
             $table->string('zipcode', 45);
