@@ -14,4 +14,8 @@ class SiteController extends Controller
     public function checkout(): View {
         return view('components.home.checkout');
     }
+
+    public function wishlist(): View {
+        return view('components.home.wishlist');
+    }
 }

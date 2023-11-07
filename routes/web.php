@@ -32,4 +32,5 @@ Route::middleware([
 
 Route::get('/cart', [SiteController::class, 'cart'])->name('cart');
 Route::get('/checkout', [SiteController::class, 'checkout'])->name('checkout');
+Route::get('/wishlist', [SiteController::class, 'wishlist'])->name('wishlist');
 Route::get('/{product:slug}', [ProductController::class, 'show'])->name('product');
