@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -32,5 +33,6 @@ Route::middleware([
 
 Route::get('/cart', [SiteController::class, 'cart'])->name('cart');
 Route::get('/checkout', [SiteController::class, 'checkout'])->name('checkout');
+Route::get('/order/{order:tracking_no}', [OrderController::class, 'show'])->name('order');
 Route::get('/wishlist', [SiteController::class, 'wishlist'])->name('wishlist');
 Route::get('/{product:slug}', [ProductController::class, 'show'])->name('product');
