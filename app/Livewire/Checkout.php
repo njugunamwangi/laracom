@@ -38,8 +38,10 @@ class Checkout extends Component
             'user_id' => auth()->user()->id,
             'total_price' => $total,
             'tracking_no' => Str::uuid(),
+            'order_id' => 'AXFYT-'.rand(1000000, 9999999),
             'payment_method' => 'Online',
             'payment_status' => 'Pending',
+            'order_status' => 'Pending',
         ]);
 
         foreach ($this->cart as $item) {
