@@ -66,7 +66,7 @@ class Checkout extends Component
         if ($order && $orderDetails) {
             Cart::query()->where('user_id', '=', auth()->user()->id)->delete();
 
-            return redirect('/');
+            return redirect()->to('/order/' . $order->tracking_no);
         }
     }
 
