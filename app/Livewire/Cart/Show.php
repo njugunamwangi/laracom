@@ -31,7 +31,7 @@ class Show extends Component
             ->where('user_id', '=', auth()->user()->id)
             ->first();
 
-        if ($model) {
+        if ($model && $model->quantity > 1) {
 
             $model->decrement('quantity');
 
