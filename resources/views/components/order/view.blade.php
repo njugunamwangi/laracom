@@ -67,19 +67,27 @@
                             <h4 class="sr-only">Payment</h4>
                             <dl class="grid grid-cols-2 gap-x-6 border-t border-gray-200 py-10 text-sm">
                                 <div>
-                                    <dt class="font-medium text-gray-900">Payment method</dt>
-                                    <dd class="mt-2 text-gray-700">
-                                        <p>Apple Pay</p>
-                                        <p>Mastercard</p>
-                                        <p><span aria-hidden="true">••••</span><span class="sr-only">Ending in </span>1545</p>
-                                    </dd>
-                                </div>
-                                <div>
-                                    <dt class="font-medium text-gray-900">Shipping method</dt>
-                                    <dd class="mt-2 text-gray-700">
-                                        <p>DHL</p>
-                                        <p>Takes up to 3 working days</p>
-                                    </dd>
+                                    <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal" role="form">
+                                        <div class="row" style="margin-bottom:40px;">
+                                            <div class="col-md-8 col-md-offset-2">
+
+                                                <input type="hidden" name="email" value="{{ $order->details->email }}">
+                                                <input type="hidden" name="orderID" value="{{ $order->order_id }}">
+                                                <input type="hidden" name="amount" value="{{ $order->total_price * 100 }}">
+{{--                                                <input type="hidden" name="quantity" value="3">--}}
+                                                <input type="hidden" name="currency" value="KES">
+                                                <input type="hidden" name="metadata" value="{{ json_encode($array = ['customer_id' => $order->user_id,]) }}" >
+                                                <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                                                <p>
+                                                    <button class="inline-block flex-1 rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-base" type="submit" value="Pay Now!">
+                                                        <i class="fa fa-plus-circle fa-lg"></i> Pay with PayStack!
+                                                    </button>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </dl>
 

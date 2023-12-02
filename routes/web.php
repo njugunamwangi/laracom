@@ -35,4 +35,8 @@ Route::get('/cart', [SiteController::class, 'cart'])->name('cart');
 Route::get('/checkout', [SiteController::class, 'checkout'])->name('checkout');
 Route::get('/order/{order:tracking_no}', [OrderController::class, 'show'])->name('order');
 Route::get('/wishlist', [SiteController::class, 'wishlist'])->name('wishlist');
+
+Route::post('/pay', [App\Http\Controllers\PaymentController::class, 'redirectToGateway'])->name('pay');
+Route::get('/payment/callback', [App\Http\Controllers\PaymentController::class, 'handleGatewayCallback']);
+
 Route::get('/{product:slug}', [ProductController::class, 'show'])->name('product');
