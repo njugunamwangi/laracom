@@ -3,17 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Request;
 
 class OrderController extends Controller
 {
     public function show(Order $order, Request $request) {
-        $user = $request->user()->id;
+        if (Auth::check()) {
 
-        if ($order->user_id != $user) {
-            return abort(403, 'You cannot view this order');
+            $user = $request->user()->id;
+
+            if ($order->user_id != $user) {
+                return abort(403, 'You cannot view this order');
+            }
+
+            return view('components.order.view', compact('order'));
         }
 
-        return view('components.order.view', compact('order'));
+        return abort(403, 'Forbidden');
     }
 }
