@@ -24,6 +24,10 @@ class Order extends Model
         'order_status'
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime'
+    ];
+
     public function user(): BelongsTo {
         return $this->belongsTo(User::class, 'user_id');
     }
@@ -34,5 +38,9 @@ class Order extends Model
 
     public function details(): HasOne {
         return $this->hasOne(OrderDetail::class, 'order_id', 'id');
+    }
+
+    public function date() {
+        return $this->created_at->format('F jS, Y');
     }
 }
