@@ -27,7 +27,7 @@
                                 <path d="M96 0V47L48 94H0V47L48 0H96Z" />
                             </svg>
 
-                            Flowrift
+                            {{ config('app.name', 'Laravel') }}
                         </a>
                     </div>
                     <!-- logo - end -->
@@ -160,7 +160,7 @@
                 <!-- nav - end -->
             </div>
 
-            <div class="border-t py-8 text-center text-sm text-gray-400">© 2021 - Present Flowrift. All rights reserved.</div>
+            <div class="border-t py-8 text-center text-sm text-gray-400">© 2021 - Present {{ config('app.name', 'Laravel') }}. All rights reserved.</div>
         </div>
     </div>
 </footer>
