@@ -5,7 +5,7 @@
             @foreach($cart as $item)
                 <!-- product - start -->
                 <div class="flex flex-wrap gap-x-4 overflow-hidden rounded-lg border sm:gap-y-4 lg:gap-6">
-                    <a href="{{ route('product', $item->product) }}"
+                    <a href="{{ route('product', $item->product) }}" wire:navigate
                        class="group relative block h-24 w-16 overflow-hidden bg-gray-100 sm:h-56 sm:w-40">
                         <img src="{{ url('/storage/'.$item->product->productImage->path) }}"
                              loading="lazy"
@@ -15,7 +15,7 @@
 
                     <div class="flex flex-1 flex-col justify-between py-4">
                         <div>
-                            <a href="{{ route('product', $item->product) }}"
+                            <a href="{{ route('product', $item->product) }}" wire:navigate
                                class="mb-1 inline-block text-lg font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-xl">
                                 {{ $item->product->product }}
                             </a>

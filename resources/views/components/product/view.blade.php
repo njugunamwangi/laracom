@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout :title="$product->product">
 
     <div class="bg-white py-6 sm:py-8 lg:py-12">
         <div class="mx-auto max-w-screen-lg px-4 md:px-8">

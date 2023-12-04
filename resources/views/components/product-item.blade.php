@@ -1,5 +1,5 @@
 <div>
-    <a href="{{ route('product', $product) }}" class="group relative mb-2 block h-96 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:mb-3">
+    <a href="{{ route('product', $product) }}" wire:navigate class="group relative mb-2 block h-96 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:mb-3">
         <img
             src="{{ url('/storage/'.$product->productImage->path) }}"
             loading="lazy"
@@ -14,7 +14,7 @@
 
     <div class="flex items-start justify-between gap-2 px-2">
         <div class="flex flex-col">
-            <a href="{{ route('product', $product) }}" class="text-lg font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-xl">{{ $product->product }}</a>
+            <a href="{{ route('product', $product) }}" wire:navigate class="text-lg font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-xl">{{ $product->product }}</a>
             <span class="text-gray-500">by {{ $product->brand->brand }}</span>
         </div>
 
