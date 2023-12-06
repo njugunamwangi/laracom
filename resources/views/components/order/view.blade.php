@@ -96,7 +96,7 @@
                             <dl class="space-y-6 border-t border-gray-200 pt-10 text-sm">
                                 <div class="flex justify-between">
                                     <dt class="font-medium text-gray-900">Shipping</dt>
-                                    <dd class="text-gray-700">Kes {{ number_format(1000, 2) }} </dd>
+                                    <dd class="text-gray-700">Kes {{ number_format(0, 2) }} </dd>
                                 </div>
                                 <div class="flex justify-between">
                                     <dt class="font-medium text-gray-900">Total</dt>

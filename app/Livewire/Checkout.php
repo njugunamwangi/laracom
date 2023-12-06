@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class Checkout extends Component
 {
-    public $cart, $subTotal, $shipping = 1000;
+    public $cart, $subTotal, $shipping = 0;
 
     public $name, $email, $phone, $address1, $address2, $city, $state, $zipcode;
 
