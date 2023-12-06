@@ -172,6 +172,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
         Unicodeveloper\Paystack\PaystackServiceProvider::class,
+        Paytabscom\Laravel_paytabs\PaypageServiceProvider::class,
     ])->toArray(),
 
     /*

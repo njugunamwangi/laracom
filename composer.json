@@ -17,6 +17,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.0",
+        "paytabscom/laravel_paytabs": "^1.4",
         "spatie/laravel-sluggable": "^3.5",
         "unicodeveloper/laravel-paystack": "^1.1"
     },
