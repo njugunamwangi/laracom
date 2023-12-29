@@ -29,7 +29,12 @@ class OrdersRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('id')
             ->columns([
-                Tables\Columns\TextColumn::make('id'),
+                Tables\Columns\TextColumn::make('tracking_no'),
+                Tables\Columns\TextColumn::make('order_id'),
+                Tables\Columns\TextColumn::make('order_status'),
+                Tables\Columns\TextColumn::make('payment_status'),
+                Tables\Columns\TextColumn::make('total_price')
+                    ->money('KES'),
             ])
             ->filters([
                 //
