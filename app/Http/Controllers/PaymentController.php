@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Payment;
 use Illuminate\Support\Facades\Redirect;
 use Unicodeveloper\Paystack\Facades\Paystack;
 
@@ -35,9 +36,24 @@ class PaymentController extends Controller
     {
         $paymentDetails = Paystack::getPaymentData();
 
-        dd($paymentDetails);
-        // Now you have the payment details,
-        // you can store the authorization_code in your db to allow for recurrent subscriptions
-        // you can then redirect or do whatever you want
+        $data = $paymentDetails['data'];
+
+        $payment =  Payment::create([
+            'status' => $paymentDetails['status'],
+            'message' => $paymentDetails['message'],
+            'paymentId' => $data['id'],
+            'order_id' => $data['metadata']['order_id'],
+            'user_id' => $data['metadata']['user_id'],
+            'domain' => $data['domain'],
+            'gateway_response' => $data['gateway_response'],
+            'reference' => $data['reference'],
+            'currency' => $data['currency'],
+            'ip_address' => $data['ip_address'],
+            'amount' => $data['amount'],
+        ]);
+
+        if($payment) {
+            return redirect()->to('orders');
+        }
     }
 }
