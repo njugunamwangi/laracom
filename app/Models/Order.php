@@ -43,4 +43,8 @@ class Order extends Model
     public function date() {
         return $this->created_at->format('F jS, Y');
     }
+
+    public function payments(): HasMany {
+        return $this->hasMany(Payment::class);
+    }
 }
