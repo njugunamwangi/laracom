@@ -74,7 +74,6 @@
                                                 <input type="hidden" name="email" value="{{ $order->details->email }}">
                                                 <input type="hidden" name="orderID" value="{{ $order->order_id }}">
                                                 <input type="hidden" name="amount" value="{{ $order->total_price * 100 }}">
-{{--                                                <input type="hidden" name="quantity" value="3">--}}
                                                 <input type="hidden" name="currency" value="KES">
                                                 <input type="hidden" name="metadata" value="{{ json_encode($array = [
                                                     'user_id' => $order->user_id,

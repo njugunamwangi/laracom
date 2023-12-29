@@ -49,7 +49,7 @@ class PaymentController extends Controller
             'reference' => $data['reference'],
             'currency' => $data['currency'],
             'ip_address' => $data['ip_address'],
-            'amount' => $data['amount'],
+            'amount' => $data['amount'] / 100,
         ]);
 
         if($payment) {
