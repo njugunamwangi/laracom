@@ -76,7 +76,9 @@
                                                 <input type="hidden" name="amount" value="{{ $order->total_price * 100 }}">
 {{--                                                <input type="hidden" name="quantity" value="3">--}}
                                                 <input type="hidden" name="currency" value="KES">
-                                                <input type="hidden" name="metadata" value="{{ json_encode($array = ['customer_id' => $order->user_id,]) }}" >
+                                                <input type="hidden" name="metadata" value="{{ json_encode($array = [
+                                                    'user_id' => $order->user_id,
+                                                    'order_id' => $order->id,]) }}" >
                                                 <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
