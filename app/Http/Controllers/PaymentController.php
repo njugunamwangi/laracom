@@ -50,6 +50,7 @@ class PaymentController extends Controller
             'currency' => $data['currency'],
             'ip_address' => $data['ip_address'],
             'amount' => $data['amount'] / 100,
+            'channel' => $data['channel'],
         ]);
 
         if($payment) {

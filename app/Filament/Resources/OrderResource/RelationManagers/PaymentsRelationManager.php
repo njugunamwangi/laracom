@@ -35,6 +35,7 @@ class PaymentsRelationManager extends RelationManager
                     ->label('Payment ID'),
                 Tables\Columns\TextColumn::make('currency'),
                 Tables\Columns\TextColumn::make('amount'),
+                Tables\Columns\TextColumn::make('channel'),
                 Tables\Columns\TextColumn::make('gateway_response'),
             ])
             ->filters([
