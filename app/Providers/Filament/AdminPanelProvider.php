@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
 use Awcodes\Curator\CuratorPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -55,6 +56,7 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugins([
+                FilamentSpatieRolesPermissionsPlugin::make(),
                 CuratorPlugin::make()
                     ->label('Media')
                     ->pluralLabel('Media')
