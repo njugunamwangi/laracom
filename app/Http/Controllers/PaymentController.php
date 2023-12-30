@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Redirect;
 use Unicodeveloper\Paystack\Facades\Paystack;
@@ -38,8 +39,10 @@ class PaymentController extends Controller
 
         $data = $paymentDetails['data'];
 
+        // dd($paymentDetails);
+
         $payment =  Payment::create([
-            'status' => $paymentDetails['status'],
+            'status' => $data['status'],
             'message' => $paymentDetails['message'],
             'paymentId' => $data['id'],
             'order_id' => $data['metadata']['order_id'],
@@ -54,6 +57,16 @@ class PaymentController extends Controller
         ]);
 
         if($payment) {
+            if($data['status'] == 'success') {
+                $model = Order::query()
+                    ->where('id', '=', $data['metadata']['order_id'])
+                    ->first();
+
+                $model->update([
+                    'payment_status' => 'Paid',
+                    'payment_method' => 'PayStack'
+                ]);
+            }
             return redirect()->to('orders');
         }
     }

@@ -40,7 +40,7 @@ class Checkout extends Component
             'tracking_no' => Str::uuid(),
             'order_id' => 'AXFYT-'.rand(1000000, 9999999),
             'payment_method' => 'Online',
-            'payment_status' => 'Pending',
+            'payment_status' => 'Not Paid',
             'order_status' => 'Pending',
         ]);
 

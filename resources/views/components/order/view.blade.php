@@ -18,8 +18,9 @@
                             <dt class="text-gray-900">Tracking number</dt>
                             <div class="flex justify-between">
                                 <dd class="mt-2 text-indigo-600">{{ $order->tracking_no }}</dd>
-                                <dd class="mt-2">
+                                <dd class="mt-2 flex">
                                     <x-order.order-status :status="$order->order_status" />
+                                    <x-order.payment-status :status="$order->payment_status" />
                                 </dd>
                             </div>
                         </dl>
@@ -64,37 +65,9 @@
                                 </div>
                             </dl>
 
-                            <h4 class="sr-only">Payment</h4>
-                            <dl class="grid grid-cols-2 gap-x-6 border-t border-gray-200 py-10 text-sm">
-                                <div>
-                                    <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal" role="form">
-                                        <div class="row" style="margin-bottom:40px;">
-                                            <div class="col-md-8 col-md-offset-2">
-
-                                                <input type="hidden" name="email" value="{{ $order->details->email }}">
-                                                <input type="hidden" name="orderID" value="{{ $order->order_id }}">
-                                                <input type="hidden" name="amount" value="{{ $order->total_price * 100 }}">
-                                                <input type="hidden" name="currency" value="KES">
-                                                <input type="hidden" name="metadata" value="{{ json_encode($array = [
-                                                    'user_id' => $order->user_id,
-                                                    'order_id' => $order->id,]) }}" >
-                                                <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}">
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                                                <p>
-                                                    <button class="inline-block flex-1 rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-base" type="submit" value="Pay Now!">
-                                                        <i class="fa fa-plus-circle fa-lg"></i> Pay with PayStack!
-                                                    </button>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </dl>
-
                             <h3 class="sr-only">Summary</h3>
 
-                            <dl class="space-y-6 border-t border-gray-200 pt-10 text-sm">
+                            <dl class="space-y-6 border-t border-gray-200 py-10 text-sm">
                                 <div class="flex justify-between">
                                     <dt class="font-medium text-gray-900">Shipping</dt>
                                     <dd class="text-gray-700">Kes {{ number_format(1000, 2) }} </dd>
@@ -104,6 +77,40 @@
                                     <dd class="text-gray-900">Kes {{ number_format($order->total_price, 2) }}</dd>
                                 </div>
                             </dl>
+
+                            @if($order->payment_status != 'Paid')
+
+                                <h4 class="sr-only">Payment</h4>
+                                <dl class="grid grid-cols-2 gap-x-6 border-t border-gray-200 py-10 text-sm">
+                                    <div>
+                                        <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal" role="form">
+                                            <div class="row" style="margin-bottom:40px;">
+                                                <div class="col-md-8 col-md-offset-2">
+
+                                                    <input type="hidden" name="email" value="{{ $order->details->email }}">
+                                                    <input type="hidden" name="orderID" value="{{ $order->order_id }}">
+                                                    <input type="hidden" name="amount" value="{{ $order->total_price * 100 }}">
+                                                    <input type="hidden" name="currency" value="KES">
+                                                    <input type="hidden" name="metadata" value="{{ json_encode($array = [
+                                                        'user_id' => $order->user_id,
+                                                        'order_id' => $order->id,]) }}" >
+                                                    <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                                                    <p>
+                                                        <button class="inline-block flex-1 rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-base" type="submit" value="Pay Now!">
+                                                            <i class="fa fa-plus-circle fa-lg"></i> Pay with PayStack!
+                                                        </button>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </dl>
+
+                            @endif
+
+
                         </div>
                     </div>
                 </div>

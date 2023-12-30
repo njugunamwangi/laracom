@@ -66,6 +66,8 @@ class OrderResource extends Resource
                                                     ->label('Customer Name'),
                                                 Components\TextEntry::make('tracking_no')
                                                     ->label('Tracking Number'),
+                                                Components\TextEntry::make('order_id')
+                                                    ->label('Order ID'),
                                                 Components\TextEntry::make('created_at')
                                                     ->date(),
 
@@ -75,6 +77,14 @@ class OrderResource extends Resource
                                                     ->money('Kes'),
                                                 Components\TextEntry::make('payment_method'),
                                                 Components\TextEntry::make('payment_status')
+                                                    ->badge()
+                                                    ->color(fn (string $state): string => match ($state) {
+                                                        'Not Paid' => 'gray',
+                                                        'Failed' => 'warning',
+                                                        'Paid' => 'success',
+                                                        'Pending' => 'danger',
+                                                    }),
+                                                Components\TextEntry::make('order_status')
                                                     ->badge()
                                                     ->color(fn (string $state): string => match ($state) {
                                                         'Pending' => 'gray',
@@ -139,10 +149,10 @@ class OrderResource extends Resource
                 Tables\Columns\TextColumn::make('payment_status')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
-                        'Pending' => 'gray',
-                        'Processing' => 'warning',
-                        'Delivered' => 'success',
-                        'Cancelled' => 'danger',
+                        'Pending' => 'danger',
+                        'Not Paid' => 'gray',
+                        'Failed' => 'warning',
+                        'Paid' => 'success',
                     })
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
