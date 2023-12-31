@@ -8,11 +8,21 @@
             <!-- text - end -->
 
             <div class="bg-white">
-                <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+                <div class="mx-auto max-w-3xl px-4 py-4 sm:px-6 sm:py-4 lg:px-8">
                     <div class="max-w-xl">
-                        <h1 class="text-base font-medium text-indigo-600">Thank you!</h1>
-                        <p class="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">It's on the way!</p>
-                        <p class="mt-2 text-base text-gray-500">Your order #{{ $order->order_id }} has shipped and will be with you soon.</p>
+                        @if($order->order_status == 'Cancelled')
+                            <p class="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">Order Cancelled</p>
+                            <p class="mt-2 text-base text-gray-500">Your order #{{ $order->order_id }} was cancelled.</p>
+                        @else
+                            @if($order->order_status != 'Delivered')
+                                <p class="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">It's on the way!</p>
+                                <p class="mt-2 text-base text-gray-500">Your order #{{ $order->order_id }} is being processed.</p>
+                            @else
+                                <p class="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">All done here!</p>
+                                <p class="mt-2 text-base text-gray-500">Your order #{{ $order->order_id }} has shipped and will be with you soon.</p>
+                            @endif
+                        @endif
+
 
                         <dl class="mt-12 text-sm font-medium">
                             <dt class="text-gray-900">Tracking number</dt>
@@ -78,7 +88,7 @@
                                 </div>
                             </dl>
 
-                            @if($order->payment_status != 'Paid')
+                            @if($order->payment_status != 'Paid' && $order->order_status != 'Cancelled')
 
                                 <h4 class="sr-only">Payment</h4>
                                 <dl class="grid grid-cols-2 gap-x-6 border-t border-gray-200 py-10 text-sm">
