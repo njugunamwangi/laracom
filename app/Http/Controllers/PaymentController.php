@@ -64,6 +64,7 @@ class PaymentController extends Controller
 
                 $model->update([
                     'payment_status' => 'Paid',
+                    'order_status' => 'Processing',
                     'payment_method' => 'PayStack'
                 ]);
             }
