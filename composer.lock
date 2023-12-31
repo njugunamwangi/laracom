@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b82291713c70859018b64a344b45a9ee",
+    "content-hash": "a090556fa6b7a307516c95b161288355",
     "packages": [
         {
             "name": "althinect/filament-spatie-roles-permissions",
@@ -5602,6 +5602,81 @@
                 }
             ],
             "time": "2023-02-14T16:54:54+00:00"
+        },
+        {
+            "name": "sebdesign/laravel-viva-payments",
+            "version": "v6.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebdesign/laravel-viva-payments.git",
+                "reference": "98bf68cfcf5106b647c778d5438d463949d4aa01"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebdesign/laravel-viva-payments/zipball/98bf68cfcf5106b647c778d5438d463949d4aa01",
+                "reference": "98bf68cfcf5106b647c778d5438d463949d4aa01",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.2",
+                "illuminate/config": "^9.0 | ^10.0",
+                "illuminate/routing": "9.0 | ^10.0",
+                "illuminate/support": "9.0 | ^10.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.4",
+                "nunomaduro/larastan": "^2.4",
+                "orchestra/testbench": "^7.0 | ^8.0",
+                "phpstan/phpstan-phpunit": "^1.3",
+                "phpstan/phpstan-strict-rules": "^1.4",
+                "phpunit/phpunit": "^9.5.16"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Sebdesign\\VivaPayments\\VivaPaymentsServiceProvider"
+                    ],
+                    "aliases": {
+                        "Viva": "Sebdesign\\VivaPayments\\Facades\\Viva"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sebdesign\\VivaPayments\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sébastien Nikolaou",
+                    "email": "info@sebdesign.eu",
+                    "homepage": "https://github.com/sebdesign",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel package for integrating the Viva Payments gateway",
+            "homepage": "https://github.com/sebdesign/laravel-viva-payments",
+            "keywords": [
+                "checkout",
+                "ecommerce",
+                "gateway",
+                "laravel",
+                "pay",
+                "payment",
+                "viva",
+                "webhooks"
+            ],
+            "support": {
+                "issues": "https://github.com/sebdesign/laravel-viva-payments/issues",
+                "source": "https://github.com/sebdesign/laravel-viva-payments/tree/v6.0.6"
+            },
+            "time": "2023-12-04T12:22:46+00:00"
         },
         {
             "name": "spatie/color",
