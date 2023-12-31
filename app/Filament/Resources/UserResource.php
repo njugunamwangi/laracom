@@ -7,6 +7,7 @@ use App\Filament\Resources\UserResource\RelationManagers;
 use App\Filament\Resources\UserResource\RelationManagers\OrdersRelationManager;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -33,10 +34,26 @@ class UserResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\DateTimePicker::make('email_verified_at'),
-                Forms\Components\TextInput::make('password')
-                    ->password()
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\Select::make('roles')
+                    ->multiple()
+                    ->relationship('roles', 'name')
+                    ->preload(),
+                Grid::make(2)
+                    ->schema([
+                        Forms\Components\TextInput::make('password')
+                            ->password()
+                            ->required()
+                            ->maxLength(255)
+                            ->hiddenOn('edit')
+                            ->visibleOn('create')
+                            ->confirmed(),
+                        Forms\Components\TextInput::make('password_confirmation')
+                            ->password()
+                            ->maxLength(255)
+                            ->hiddenOn('edit')
+                            ->required()
+                            ->visibleOn('create'),
+                    ]),
                 Forms\Components\Textarea::make('two_factor_secret')
                     ->maxLength(65535)
                     ->columnSpanFull(),
