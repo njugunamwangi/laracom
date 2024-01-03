@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\RelationManagers;
+use App\Filament\Resources\OrderResource\RelationManagers\PaymentsRelationManager;
 use App\Models\Order;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -30,21 +31,39 @@ class OrderResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('user_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('user_id')
+                    ->relationship('user', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->required(),
                 Forms\Components\TextInput::make('total_price')
                     ->required()
                     ->numeric(),
                 Forms\Components\TextInput::make('payment_method')
                     ->required()
                     ->maxLength(45),
-                Forms\Components\TextInput::make('payment_status')
-                    ->required()
-                    ->maxLength(45),
+                Forms\Components\Select::make('payment_status')
+                    ->options([
+                        'Not Paid' => 'Not Paid',
+                        'Failed' => 'Failed',
+                        'Paid' => 'Paid',
+                        'Pending' => 'Pending',
+                    ])
+                    ->searchable()
+                    ->required(),
                 Forms\Components\TextInput::make('tracking_no')
                     ->required()
                     ->maxLength(2000),
+                Forms\Components\Select::make('order_status')
+                    ->options([
+                        'Pending' => 'Pending',
+                        'Failed' => 'Failed',
+                        'Processing' => 'Processing',
+                        'Delivered' => 'Delivered',
+                        'Cancelled' => 'Cancelled',
+                    ])
+                    ->searchable()
+                    ->required(),
             ]);
     }
 
@@ -65,6 +84,8 @@ class OrderResource extends Resource
                                                     ->label('Customer Name'),
                                                 Components\TextEntry::make('tracking_no')
                                                     ->label('Tracking Number'),
+                                                Components\TextEntry::make('order_id')
+                                                    ->label('Order ID'),
                                                 Components\TextEntry::make('created_at')
                                                     ->date(),
 
@@ -76,8 +97,17 @@ class OrderResource extends Resource
                                                 Components\TextEntry::make('payment_status')
                                                     ->badge()
                                                     ->color(fn (string $state): string => match ($state) {
+                                                        'Not Paid' => 'gray',
+                                                        'Failed' => 'warning',
+                                                        'Paid' => 'success',
+                                                        'Pending' => 'danger',
+                                                    }),
+                                                Components\TextEntry::make('order_status')
+                                                    ->badge()
+                                                    ->color(fn (string $state): string => match ($state) {
                                                         'Pending' => 'gray',
-                                                        'Processing' => 'warning',
+                                                        'Failed' => 'warning',
+                                                        'Processing' => 'info',
                                                         'Delivered' => 'success',
                                                         'Cancelled' => 'danger',
                                                     }),
@@ -133,15 +163,23 @@ class OrderResource extends Resource
                     ->prefix('Kes ')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('payment_method')
+                Tables\Columns\TextColumn::make('order_status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'Pending' => 'gray',
+                        'Failed' => 'warning',
+                        'Processing' => 'info',
+                        'Delivered' => 'success',
+                        'Cancelled' => 'danger',
+                    })
                     ->searchable(),
                 Tables\Columns\TextColumn::make('payment_status')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
-                        'Pending' => 'gray',
-                        'Processing' => 'warning',
-                        'Delivered' => 'success',
-                        'Cancelled' => 'danger',
+                        'Pending' => 'danger',
+                        'Not Paid' => 'gray',
+                        'Failed' => 'warning',
+                        'Paid' => 'success',
                     })
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -172,7 +210,8 @@ class OrderResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\ItemsRelationManager::class
+            RelationManagers\ItemsRelationManager::class,
+            PaymentsRelationManager::class
         ];
     }
 

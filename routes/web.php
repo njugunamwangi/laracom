@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -37,7 +38,7 @@ Route::get('/orders', [OrderController::class, 'index'])->name('orders');
 Route::get('/order/{order:tracking_no}', [OrderController::class, 'show'])->name('order');
 Route::get('/wishlist', [SiteController::class, 'wishlist'])->name('wishlist');
 
-Route::post('/pay', [App\Http\Controllers\PaymentController::class, 'redirectToGateway'])->name('pay');
-Route::get('/payment/callback', [App\Http\Controllers\PaymentController::class, 'handleGatewayCallback']);
+Route::post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
+Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback']);
 
 Route::get('/{product:slug}', [ProductController::class, 'show'])->name('product');

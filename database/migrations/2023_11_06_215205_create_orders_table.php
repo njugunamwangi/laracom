@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->decimal('total_price', 10, 2);
-            $table->string('payment_method', 45);
+            $table->string('payment_method', 45)->nullable();
             $table->string('payment_status', 45);
             $table->timestamps();
         });

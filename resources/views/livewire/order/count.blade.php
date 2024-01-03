@@ -1,0 +1,3 @@
+<div>
+    {{ $orderCount }}
+</div>

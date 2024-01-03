@@ -21,6 +21,7 @@
                                 <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Tracking Number</th>
                                 <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Total Price</th>
                                 <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Order Status</th>
+                                <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Payment Status</th>
                                 <th scope="col" class="relative whitespace-nowrap py-3.5 pl-3 pr-4 sm:pr-0">
                                     <span class="sr-only">Edit</span>
                                 </th>
@@ -34,6 +35,7 @@
                                         <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">{{ $order->tracking_no }}</td>
                                         <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Kes {{ number_format($order->total_price) }}</td>
                                         <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">{{ $order->order_status }}</td>
+                                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">{{ $order->payment_status }}</td>
                                         <td class="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                                             <a href="{{ route('order', $order) }}" wire:navigate class="text-indigo-600 hover:text-indigo-900">View<span class="sr-only">, AAPS0L</span></a>
                                         </td>
