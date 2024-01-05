@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\OrderResource\Pages;
 
+use App\Enums\OrderStatus;
 use App\Filament\Resources\OrderResource;
 use Filament\Actions;
 use Filament\Resources\Components\Tab;
@@ -24,15 +25,13 @@ class ListOrders extends ListRecords
         return [
             'all' => Tab::make(),
             'pending' => Tab::make()
-                ->modifyQueryUsing(fn (Builder $query) => $query->where('order_status', 'Pending')),
-            'Failed' => Tab::make()
-                ->modifyQueryUsing(fn (Builder $query) => $query->where('order_status', 'Failed')),
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('order_status', OrderStatus::Pending)),
             'Processing' => Tab::make()
-                ->modifyQueryUsing(fn (Builder $query) => $query->where('order_status', 'Processing')),
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('order_status', OrderStatus::Processing)),
             'Delivered' => Tab::make()
-                ->modifyQueryUsing(fn (Builder $query) => $query->where('order_status', 'Delivered')),
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('order_status', OrderStatus::Delivered)),
             'Cancelled' => Tab::make()
-                ->modifyQueryUsing(fn (Builder $query) => $query->where('order_status', 'Cancelled')),
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('order_status', OrderStatus::Cancelled)),
         ];
     }
 }

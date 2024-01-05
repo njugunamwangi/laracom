@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\OrderStatus;
 use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\RelationManagers;
 use App\Filament\Resources\OrderResource\RelationManagers\PaymentsRelationManager;
@@ -55,13 +56,8 @@ class OrderResource extends Resource
                     ->required()
                     ->maxLength(2000),
                 Forms\Components\Select::make('order_status')
-                    ->options([
-                        'Pending' => 'Pending',
-                        'Failed' => 'Failed',
-                        'Processing' => 'Processing',
-                        'Delivered' => 'Delivered',
-                        'Cancelled' => 'Cancelled',
-                    ])
+                    ->enum(OrderStatus::class)
+                    ->options(OrderStatus::class)
                     ->searchable()
                     ->required(),
             ]);
