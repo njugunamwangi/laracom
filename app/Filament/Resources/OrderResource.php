@@ -158,21 +158,14 @@ class OrderResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('order_status')
                     ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'Pending' => 'gray',
-                        'Failed' => 'warning',
-                        'Processing' => 'info',
-                        'Delivered' => 'success',
-                        'Cancelled' => 'danger',
+                    ->color(function ($state) {
+                        return $state->getColor();
                     })
                     ->searchable(),
                 Tables\Columns\TextColumn::make('payment_status')
                     ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'Pending' => 'danger',
-                        'Not Paid' => 'gray',
-                        'Failed' => 'warning',
-                        'Paid' => 'success',
+                    ->color(function ($state) {
+                        return $state->getColor();
                     })
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')

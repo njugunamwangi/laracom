@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\OrderStatus;
+use App\Enums\PaymentStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -25,7 +27,9 @@ class Order extends Model
     ];
 
     protected $casts = [
-        'created_at' => 'datetime'
+        'created_at' => 'datetime',
+        'order_status' => OrderStatus::class,
+        'payment_status' => PaymentStatus::class,
     ];
 
     public function user(): BelongsTo {
