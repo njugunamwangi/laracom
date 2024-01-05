@@ -36,6 +36,7 @@ class BrandResource extends Resource
                     ->hiddenOn('create')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('website')
+                    ->url()
                     ->unique(ignoreRecord: true)
                     ->required()
                     ->maxLength(255),
