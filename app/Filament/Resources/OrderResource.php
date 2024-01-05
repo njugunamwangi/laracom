@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Enums\OrderStatus;
+use App\Enums\PaymentStatus;
 use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\RelationManagers;
 use App\Filament\Resources\OrderResource\RelationManagers\PaymentsRelationManager;
@@ -44,12 +45,8 @@ class OrderResource extends Resource
                     ->required()
                     ->maxLength(45),
                 Forms\Components\Select::make('payment_status')
-                    ->options([
-                        'Not Paid' => 'Not Paid',
-                        'Failed' => 'Failed',
-                        'Paid' => 'Paid',
-                        'Pending' => 'Pending',
-                    ])
+                    ->enum(PaymentStatus::class)
+                    ->options(PaymentStatus::class)
                     ->searchable()
                     ->required(),
                 Forms\Components\TextInput::make('tracking_no')
