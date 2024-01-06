@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a090556fa6b7a307516c95b161288355",
+    "content-hash": "fd24afbf4659b5807b1f2fd69d1c0c09",
     "packages": [
         {
             "name": "althinect/filament-spatie-roles-permissions",
@@ -3937,6 +3937,77 @@
             "time": "2023-12-04T14:03:47+00:00"
         },
         {
+            "name": "masmerise/livewire-toaster",
+            "version": "2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/masmerise/livewire-toaster.git",
+                "reference": "89aa127df5d17b915b0818761bdf83e8915036c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/masmerise/livewire-toaster/zipball/89aa127df5d17b915b0818761bdf83e8915036c2",
+                "reference": "89aa127df5d17b915b0818761bdf83e8915036c2",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^10.0",
+                "livewire/livewire": "^3.0",
+                "php": "~8.2"
+            },
+            "conflict": {
+                "stevebauman/unfinalize": "*"
+            },
+            "require-dev": {
+                "dive-be/php-crowbar": "^1.0",
+                "laravel/pint": "^1.0",
+                "nunomaduro/larastan": "^2.0",
+                "orchestra/testbench": "^8.0",
+                "phpunit/phpunit": "^10.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Toaster": "Masmerise\\Toaster\\Toaster"
+                    },
+                    "providers": [
+                        "Masmerise\\Toaster\\ToasterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Masmerise\\Toaster\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Muhammed Sari",
+                    "email": "support@muhammedsari.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Beautiful toast notifications for Laravel / Livewire.",
+            "homepage": "https://github.com/masmerise/livewire-toaster",
+            "keywords": [
+                "alert",
+                "laravel",
+                "livewire",
+                "toast",
+                "toaster"
+            ],
+            "support": {
+                "issues": "https://github.com/masmerise/livewire-toaster/issues",
+                "source": "https://github.com/masmerise/livewire-toaster/tree/2.0.3"
+            },
+            "time": "2023-09-28T12:07:49+00:00"
+        },
+        {
             "name": "masterminds/html5",
             "version": "2.8.1",
             "source": {
@@ -4631,53 +4702,6 @@
                 "source": "https://github.com/paragonie/constant_time_encoding"
             },
             "time": "2022-06-14T06:56:20+00:00"
-        },
-        {
-            "name": "paytabscom/laravel_paytabs",
-            "version": "1.4.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/paytabscom/paytabs-php-laravel-package.git",
-                "reference": "7cc3b7ed01c4fd64413f94a42e4cdc187da07574"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/paytabscom/paytabs-php-laravel-package/zipball/7cc3b7ed01c4fd64413f94a42e4cdc187da07574",
-                "reference": "7cc3b7ed01c4fd64413f94a42e4cdc187da07574",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.0|^8.0"
-            },
-            "type": "composer-package",
-            "autoload": {
-                "psr-4": {
-                    "Paytabscom\\Laravel_paytabs\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Walaa Elsaeed",
-                    "email": "w.elsaeed@paytabs.com"
-                }
-            ],
-            "description": "Official laravel package to implement PayTabs integration with laravel apps",
-            "homepage": "https://site.paytabs.com/en/",
-            "keywords": [
-                "E-comerce",
-                "laravel",
-                "payments",
-                "paytabs"
-            ],
-            "support": {
-                "issues": "https://github.com/paytabscom/paytabs-php-laravel-package/issues",
-                "source": "https://github.com/paytabscom/paytabs-php-laravel-package/tree/V1.4.2"
-            },
-            "time": "2023-09-05T17:43:47+00:00"
         },
         {
             "name": "phpoption/phpoption",

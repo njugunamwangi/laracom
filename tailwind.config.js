@@ -10,6 +10,7 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './vendor/awcodes/filament-curator/resources/**/*.blade.php',
+        './vendor/masmerise/livewire-toaster/resources/views/*.blade.php',
     ],
 
     theme: {
