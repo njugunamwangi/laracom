@@ -7,6 +7,7 @@ use App\Enums\PaymentStatus;
 use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\RelationManagers;
 use App\Filament\Resources\OrderResource\RelationManagers\PaymentsRelationManager;
+use App\Filament\Resources\OrderResource\Widgets\OrdersStatsOverview;
 use App\Models\Order;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -198,6 +199,13 @@ class OrderResource extends Resource
         return [
             RelationManagers\ItemsRelationManager::class,
             PaymentsRelationManager::class
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            OrdersStatsOverview::class
         ];
     }
 

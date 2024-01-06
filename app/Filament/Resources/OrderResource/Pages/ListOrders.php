@@ -4,6 +4,7 @@ namespace App\Filament\Resources\OrderResource\Pages;
 
 use App\Enums\OrderStatus;
 use App\Filament\Resources\OrderResource;
+use App\Filament\Resources\OrderResource\Widgets\OrdersStatsOverview;
 use Filament\Actions;
 use Filament\Resources\Components\Tab;
 use Filament\Resources\Pages\ListRecords;
@@ -17,6 +18,13 @@ class ListOrders extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+        ];
+    }
+
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            OrdersStatsOverview::class
         ];
     }
 
