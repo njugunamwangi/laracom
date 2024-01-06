@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 
 class AddToCart extends Component
 {
@@ -39,11 +40,13 @@ class AddToCart extends Component
                         'quantity' => 1
                     ]);
                     $this->dispatch('CartUpdated');
+
+                    Toaster::success('Product added to cart');
                 } else {
-                    session()->flash('message', 'Product already added to cart.');
+                    Toaster::warning('Product already added to cart.');
                 }
             } else {
-                session()->flash('message', 'Product does not exist.');
+                Toaster::danger('Product does not exist.');
             }
         }
     }
