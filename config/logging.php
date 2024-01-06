@@ -58,12 +58,6 @@ return [
             'ignore_exceptions' => false,
         ],
 
-        'PayTabs' => [
-            'driver' => 'single',
-            'path' => storage_path('logs/paytabs.log'),
-            'level' => 'info',
-        ],
-
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
