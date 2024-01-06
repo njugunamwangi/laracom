@@ -5,6 +5,7 @@ namespace App\Livewire\Cart;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 
 class Show extends Component
 {
@@ -48,6 +49,7 @@ class Show extends Component
         if ($model) {
             $model->delete();
             $this->dispatch('CartUpdated');
+            Toaster::error('Product removed from cart.');
         }
     }
 

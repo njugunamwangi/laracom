@@ -22,7 +22,7 @@ class AddToCart extends Component
 
     public function addToCart(int $productId) {
         if (!Auth::check()) {
-            session()->flash('message', 'Please login to proceed.');
+            Toaster::info('Please login to proceed');
         } else {
 
             if ($this->product->where('id', $productId)->where('status', 1)->exists()) {
