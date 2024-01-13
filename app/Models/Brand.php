@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
+use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Models\Media;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -42,6 +45,29 @@ class Brand extends Model
 
     public function products(): HasMany {
         return $this->hasMany(Product::class, 'brand_id', 'id');
+    }
+
+    public static function getForm(): array {
+        return [
+            TextInput::make('brand')
+                ->required()
+                ->maxLength(255),
+            TextInput::make('slug')
+                ->unique(ignoreRecord: true)
+                ->required()
+                ->hiddenOn('create')
+                ->maxLength(255),
+            TextInput::make('website')
+                ->url()
+                ->unique(ignoreRecord: true)
+                ->required()
+                ->maxLength(255),
+            CuratorPicker::make('featured_image_id')
+                ->relationship('featuredImage', 'id')
+                ->label('Image'),
+            RichEditor::make('description')
+                ->columnSpanFull(),
+        ];
     }
 
 }
