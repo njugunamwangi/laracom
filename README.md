@@ -19,8 +19,6 @@ email: admin@admin.com
 password: password
 ```
 
-- Remember to checkout the screenshots folder in the root directory 
-
 ## Installation
 - Clone the repository
 ```bash
