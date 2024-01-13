@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 
 class AddToWishlist extends Component
 {
@@ -23,7 +24,7 @@ class AddToWishlist extends Component
     public function addToWishlist(int $productId)
     {
         if (!Auth::check()) {
-            session()->flash('message', 'Please login to proceed.');
+            Toaster::info('Please login to proceed.');
         } else {
 
             if ($this->product->where('id', $productId)->where('status', 1)->exists()) {
@@ -40,11 +41,13 @@ class AddToWishlist extends Component
                         'product_id' => $productId,
                     ]);
                     $this->dispatch('WishlistUpdated');
+
+                    Toaster::success('Product added to wishlist.');
                 } else {
-                    session()->flash('message', 'Product already added to wishlist.');
+                    Toaster::warning('Product already added to wishlist.');
                 }
             } else {
-                session()->flash('message', 'Product does not exist.');
+                Toaster::danger('Product does not exist.');
 
             }
         }
