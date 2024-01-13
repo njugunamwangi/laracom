@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
@@ -87,6 +88,7 @@ class ProductResource extends Resource
                         Forms\Components\Select::make('category_id')
                             ->relationship('categories', 'category')
                             ->required()
+                            ->createOptionForm(Category::getForm())
                             ->preload()
                             ->multiple()
                             ->searchable(),
@@ -95,6 +97,8 @@ class ProductResource extends Resource
                             ->options(Brand::all()
                                 ->pluck('brand', 'id')
                             )
+                            ->createOptionForm(Brand::getForm())
+                            ->editOptionForm(Brand::getForm())
                             ->required()
                             ->preload()
                             ->searchable(),
