@@ -57,6 +57,7 @@ class ProductResource extends Resource
                                 Forms\Components\TextInput::make('list_price')
                                     ->prefix('Kes')
                                     ->required()
+                                    ->gt('retail_price')
                                     ->numeric(),
                                 Forms\Components\TextInput::make('retail_price')
                                     ->prefix('Kes')
