@@ -11,6 +11,7 @@ export default {
         './resources/views/**/*.blade.php',
         './vendor/awcodes/filament-curator/resources/**/*.blade.php',
         './vendor/masmerise/livewire-toaster/resources/views/*.blade.php',
+        './vendor/awcodes/filament-curator/resources/**/*.blade.php',
     ],
 
     theme: {
