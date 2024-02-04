@@ -56,6 +56,8 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->databaseNotifications()
+            ->databaseNotificationsPolling('5s')
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->authMiddleware([
                 Authenticate::class,
