@@ -19,33 +19,14 @@ class BrandResource extends Resource
 {
     protected static ?string $model = Brand::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-bookmark-square';
-
     protected static ?string $navigationGroup = 'Shop';
+
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Forms\Components\TextInput::make('brand')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('slug')
-                    ->unique(ignoreRecord: true)
-                    ->required()
-                    ->hiddenOn('create')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('website')
-                    ->url()
-                    ->unique(ignoreRecord: true)
-                    ->required()
-                    ->maxLength(255),
-                CuratorPicker::make('featured_image_id')
-                    ->relationship('featuredImage', 'id')
-                    ->label('Image'),
-                Forms\Components\Textarea::make('description')
-                    ->columnSpanFull(),
-            ]);
+            ->schema(Brand::getForm());
     }
 
     public static function table(Table $table): Table

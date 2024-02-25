@@ -29,7 +29,9 @@
                             <div class="flex justify-between">
                                 <dd class="mt-2 text-indigo-600">{{ $order->tracking_no }}</dd>
                                 <dd class="mt-2 flex">
+                                    <!-- Order Status -->
                                     <x-order.order-status :status="$order->order_status" />
+                                    <!-- Payment Status -->
                                     <x-order.payment-status :status="$order->payment_status" />
                                 </dd>
                             </div>
@@ -88,7 +90,7 @@
                                 </div>
                             </dl>
 
-                            @if($order->payment_status != 'Paid' && $order->order_status != 'Cancelled')
+                            @if($order->payment_status != App\Enums\PaymentStatus::Paid && $order->order_status != App\Enums\OrderStatus::Cancelled)
 
                                 <h4 class="sr-only">Payment</h4>
                                 <dl class="grid grid-cols-2 gap-x-6 border-t border-gray-200 py-10 text-sm">

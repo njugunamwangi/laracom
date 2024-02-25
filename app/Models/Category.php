@@ -2,7 +2,12 @@
 
 namespace App\Models;
 
+use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Models\Media;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -51,6 +56,32 @@ class Category extends Model
 
     public function products() : BelongsToMany {
         return $this->belongsToMany(Category::class);
+    }
+
+    public static function getForm(): array {
+        return [
+            Grid::make(2)
+                ->schema([
+                    TextInput::make('category')
+                        ->required()
+                        ->maxLength(255),
+                    Select::make('parent_id')
+                        ->relationship('parent', 'category')
+                        ->searchable()
+                        ->preload()
+                        ->label('Parent Category')
+                ]),
+            TextInput::make('slug')
+                ->required()
+                ->hiddenOn('create')
+                ->maxLength(255),
+            CuratorPicker::make('image_id')
+                ->relationship('image', 'name')
+                ->label('Image')
+                ->required(),
+            RichEditor::make('description')
+                ->columnSpanFull(),
+        ];
     }
 
 }

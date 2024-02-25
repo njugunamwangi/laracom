@@ -20,37 +20,14 @@ class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-bookmark-slash';
-
     protected static ?string $navigationGroup = 'Shop';
 
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Grid::make(2)
-                    ->schema([
-                        Forms\Components\TextInput::make('category')
-                            ->required()
-                            ->maxLength(255),
-                        Forms\Components\Select::make('parent_id')
-                            ->relationship('parent', 'category')
-                            ->searchable()
-                            ->preload()
-                            ->label('Parent Category')
-                    ]),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->hiddenOn('create')
-                    ->maxLength(255),
-                CuratorPicker::make('image_id')
-                    ->relationship('image', 'name')
-                    ->label('Image')
-                    ->required(),
-                Forms\Components\RichEditor::make('description')
-                    ->columnSpanFull(),
-            ]);
+            ->schema(Category::getForm());
     }
 
     public static function table(Table $table): Table

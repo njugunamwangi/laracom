@@ -11,4 +11,5 @@ class Role extends ModelsRole
     use HasFactory;
 
     public const IS_ADMIN = 1;
+    public const IS_CUSTOMER = 2;
 }

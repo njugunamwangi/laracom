@@ -135,6 +135,7 @@
                         <div class="ml-4 md:ml-8 md:pt-1 lg:ml-16">
                             <span class="block font-bold text-gray-800 md:text-lg">
                                 Kes {{ number_format( $item->product->retail_price * $item->quantity, 2 ) }}
+                                @php $subTotal += $item->product->retail_price * $item->quantity @endphp
                             </span>
                         </div>
                     </div>

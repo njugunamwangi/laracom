@@ -21,6 +21,7 @@ class Show extends Component
         if ($model) {
 
             $model->increment('quantity');
+            Toaster::success('Cart updated');
 
         }
     }
@@ -35,6 +36,7 @@ class Show extends Component
         if ($model && $model->quantity > 1) {
 
             $model->decrement('quantity');
+            Toaster::success('Cart updated');
 
         }
     }
