@@ -77,8 +77,7 @@ class Category extends Model
                 ->maxLength(255),
             CuratorPicker::make('image_id')
                 ->relationship('image', 'name')
-                ->label('Image')
-                ->required(),
+                ->label('Image'),
             RichEditor::make('description')
                 ->columnSpanFull(),
         ];
