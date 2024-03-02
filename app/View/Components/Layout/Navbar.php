@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Layout;
 
+use App\Models\Category;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -21,6 +22,10 @@ class Navbar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.layout.navbar');
+        $categories = Category::query()
+            ->whereNull('parent_id')
+            ->get();
+
+        return view('components.layout.navbar', compact('categories'));
     }
 }
