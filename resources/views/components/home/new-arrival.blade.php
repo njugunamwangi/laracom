@@ -1,17 +1,17 @@
-<div id="new-arrival" class="bg-white py-6 sm:py-8 lg:py-12">
-    <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-        <!-- text - start -->
-        <div class="mb-10 md:mb-16">
-            <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">New Arrivals</h2>
-        </div>
-        <!-- text - end -->
+    <div id="new-arrivals" class="bg-white">
+        <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-12 lg:max-w-7xl lg:px-8">
+            <h2 class="text-xl font-bold text-gray-900">
+                New Arrivals
+            </h2>
 
-        <div class="grid gap-x-4 gap-y-8 sm:grid-cols-2 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4">
-            <!-- product - start -->
-            @foreach($newArrivals as $product)
-                <x-product-item :product="$product" />
-            @endforeach
-            <!-- product - end -->
+            <div class="mt-8 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+
+                @foreach($newArrivals as $product)
+                    <x-product-item :product="$product" />
+                @endforeach
+
+            <!-- More products... -->
+            </div>
         </div>
     </div>
-</div>
+

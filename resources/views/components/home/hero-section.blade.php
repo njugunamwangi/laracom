@@ -12,7 +12,7 @@
         <p class="mt-4 text-xl text-white">
             The new arrivals have, well, newly arrived. Check out the latest options from our summer small-batch release while they're still in stock.
         </p>
-        <a href="#new-arrival" class="mt-8 inline-block rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-gray-900 hover:bg-gray-100">
+        <a href="#new-arrivals" class="mt-8 inline-block rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-gray-900 hover:bg-gray-100">
             Shop New Arrivals
         </a>
     </div>
