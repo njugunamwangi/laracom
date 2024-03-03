@@ -38,6 +38,7 @@ class BrandResource extends Resource
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('website')
+                    ->copyable()
                     ->searchable(),
                 CuratorColumn::make('featured_image_id')
                     ->label('Image')
