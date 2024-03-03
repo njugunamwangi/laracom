@@ -68,12 +68,22 @@
                 </div>
 
                 <div class="space-y-6 border-t border-gray-200 px-4 py-6">
-                <div class="flow-root">
-                    <a href="#" class="-m-2 block p-2 font-medium text-gray-900">Create an account</a>
-                </div>
-                <div class="flow-root">
-                    <a href="#" class="-m-2 block p-2 font-medium text-gray-900">Sign in</a>
-                </div>
+                    @if(\Illuminate\Support\Facades\Auth::check())
+
+                        <div class="flow-root">
+                            <a href="#" class="-m-2 block p-2 font-medium text-gray-900">Account</a>
+                        </div>
+
+                    @else
+
+                        <div class="flow-root">
+                            <a href="#" class="-m-2 block p-2 font-medium text-gray-900">Create an account</a>
+                        </div>
+                        <div class="flow-root">
+                            <a href="#" class="-m-2 block p-2 font-medium text-gray-900">Sign in</a>
+                        </div>
+
+                    @endif
                 </div>
             </div>
         </div>
@@ -94,8 +104,18 @@
                 <div class="bg-gray-900">
                 <div class="mx-auto flex h-10 max-w-7xl items-center justify-end px-4 sm:px-6 lg:px-8">
                     <div class="flex items-center space-x-6">
-                    <a href="#" class="text-sm font-medium text-white hover:text-gray-100">Sign in</a>
-                    <a href="#" class="text-sm font-medium text-white hover:text-gray-100">Create an account</a>
+                        @if(!\Illuminate\Support\Facades\Auth::check())
+                            <a href="{{ route('login') }}" class="text-sm font-medium text-white hover:text-gray-100">Sign in</a>
+                            <a href="{{ route('register') }}" class="text-sm font-medium text-white hover:text-gray-100">Create an account</a>
+                        @else
+                            <a href="#" class="text-sm font-medium text-white hover:text-gray-100">Account</a>
+                            <form method="POST" action="{{ route('logout') }}" x-data>
+
+                                @csrf
+
+                                <a href="{{ route('logout') }}" @click.prevent="$root.submit();" class="text-sm font-medium text-white hover:text-gray-100">Log Out</a>
+                            </form>
+                        @endif
                     </div>
                 </div>
                 </div>
@@ -107,7 +127,7 @@
                     <div class="flex h-16 items-center justify-between">
                         <!-- Logo (lg+) -->
                         <div class="hidden lg:flex lg:flex-1 lg:items-center">
-                        <a href="#">
+                        <a href="/" wire:navigate >
                             <span class="sr-only">Your Company</span>
                             <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=white" alt="">
                         </a>
@@ -189,7 +209,7 @@
                         </div>
 
                         <!-- Logo (lg-) -->
-                        <a href="#" class="lg:hidden">
+                        <a href="/" wire:navigate class="lg:hidden">
                         <span class="sr-only">Your Company</span>
                         <img src="https://tailwindui.com/img/logos/mark.svg?color=white" alt="" class="h-8 w-auto">
                         </a>
@@ -209,11 +229,13 @@
 
                             <!-- Cart -->
                             <div class="ml-4 flow-root lg:ml-8">
-                            <a href="#" class="group -m-2 flex items-center p-2">
-                                <svg class="h-6 w-6 flex-shrink-0 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                            <a href="{{ route('cart') }}" wire:navigate class="group -m-2 flex items-center p-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 flex-shrink-0 text-white">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
                                 </svg>
-                                <span class="ml-2 text-sm font-medium text-white">0</span>
+                                <span class="ml-2 text-sm font-medium text-white">
+                                    <livewire:cart.count />
+                                </span>
                                 <span class="sr-only">items in cart, view bag</span>
                             </a>
                             </div>
