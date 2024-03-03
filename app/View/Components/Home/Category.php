@@ -21,6 +21,12 @@ class Category extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.home.category');
+        $categories = \App\Models\Category::query()
+            ->whereNotNull('parent_id')
+            ->inRandomOrder()
+            ->limit(5)
+            ->get();
+
+        return view('components.home.category', compact('categories'));
     }
 }
