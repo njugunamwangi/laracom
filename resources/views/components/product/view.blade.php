@@ -6,7 +6,7 @@
                 <div class="space-y-4">
                     <div class="relative overflow-hidden rounded-lg bg-gray-100">
                         <img
-                            src="{{ url('/storage/'.$product->productImage->path) }}"
+                            src="{{ empty($product->image_id) ? "https://placehold.co/600x600?text=". $product->product  : url('/storage/' . $product->productImage->path) }}"
                             loading="lazy" alt="{{ $product->product }}"
                             class="h-full w-full object-cover object-center"/>
 

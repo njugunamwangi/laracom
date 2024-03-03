@@ -1,7 +1,7 @@
 <div>
     <a href="{{ route('product', $product) }}" wire:navigate class="group relative mb-2 block h-96 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:mb-3">
         <img
-            src="{{ url('/storage/'.$product->productImage->path) }}"
+            src="{{ empty($product->image_id) ? "https://placehold.co/600x600?text=". $product->product  : url('/storage/' . $product->productImage->path) }}"
             loading="lazy"
             alt="{{ $product->product }}"
             class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
