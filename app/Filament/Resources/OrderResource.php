@@ -196,14 +196,14 @@ class OrderResource extends Resource
     {
         return [
             RelationManagers\ItemsRelationManager::class,
-            PaymentsRelationManager::class
+            PaymentsRelationManager::class,
         ];
     }
 
     public static function getWidgets(): array
     {
         return [
-            OrdersStatsOverview::class
+            OrdersStatsOverview::class,
         ];
     }
 

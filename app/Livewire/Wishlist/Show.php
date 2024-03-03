@@ -10,7 +10,6 @@ class Show extends Component
 {
     public $wishlist;
 
-
     public function render()
     {
         if (Auth::check()) {
@@ -20,6 +19,7 @@ class Show extends Component
         } else {
             $this->wishlist = null;
         }
+
         return view('livewire.wishlist.show', ['wishlist' => $this->wishlist]);
     }
 }

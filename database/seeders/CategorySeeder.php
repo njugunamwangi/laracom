@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -16,7 +15,7 @@ class CategorySeeder extends Seeder
     {
         $categories = ['Fashion', 'Appliances', 'Computing'];
 
-        foreach($categories as $category) {
+        foreach ($categories as $category) {
             Category::create([
                 'category' => $category,
                 'slug' => Str::slug($category),
@@ -26,33 +25,33 @@ class CategorySeeder extends Seeder
         // Fashion subcategories
         $fashion = ['Men\'s Fashion', 'Women\'s Fashion', 'Kid\'s Fashion'];
 
-        foreach($fashion as $subCategory) {
+        foreach ($fashion as $subCategory) {
             Category::create([
                 'category' => $subCategory,
                 'slug' => Str::slug($subCategory),
-                'parent_id' => 1
+                'parent_id' => 1,
             ]);
         }
 
         // Appliances subcategories
         $appliances = ['Large Appliance', 'Small Appliance', 'Cooking Appliance'];
 
-        foreach($appliances as $subCategory) {
+        foreach ($appliances as $subCategory) {
             Category::create([
                 'category' => $subCategory,
                 'slug' => Str::slug($subCategory),
-                'parent_id' => 2
+                'parent_id' => 2,
             ]);
         }
 
         // Computing subcategories
         $computing = ['Laptops', 'Computers & Accessories', 'Computer Components', 'Computer Data Storage', 'Phones & Tablets'];
 
-        foreach($computing as $subCategory) {
+        foreach ($computing as $subCategory) {
             Category::create([
                 'category' => $subCategory,
                 'slug' => Str::slug($subCategory),
-                'parent_id' => 3
+                'parent_id' => 3,
             ]);
         }
     }

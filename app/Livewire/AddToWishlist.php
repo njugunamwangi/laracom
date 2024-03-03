@@ -12,7 +12,8 @@ class AddToWishlist extends Component
 {
     public Product $product;
 
-    public function mount(Product $product) {
+    public function mount(Product $product)
+    {
         $this->product = $product;
     }
 
@@ -23,7 +24,7 @@ class AddToWishlist extends Component
 
     public function addToWishlist(int $productId)
     {
-        if (!Auth::check()) {
+        if (! Auth::check()) {
             Toaster::info('Please login to proceed.');
         } else {
 
@@ -34,7 +35,7 @@ class AddToWishlist extends Component
                     ->where('product_id', '=', $productId)
                     ->first();
 
-                if (!$model) {
+                if (! $model) {
 
                     Wishlist::create([
                         'user_id' => auth()->user()->id,

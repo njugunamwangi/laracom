@@ -8,7 +8,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class OrderController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         if (Auth::check()) {
 
             $user = $request->user()->id;
@@ -17,16 +18,16 @@ class OrderController extends Controller
                 ->where('user_id', '=', $user)
                 ->get();
 
-            $title = "Orders";
+            $title = 'Orders';
 
             return view('components.order.index', compact('orders', 'title'));
         }
 
-
         return abort(403, 'Forbidden');
     }
 
-    public function show(Order $order, Request $request) {
+    public function show(Order $order, Request $request)
+    {
         if (Auth::check()) {
 
             $user = $request->user()->id;

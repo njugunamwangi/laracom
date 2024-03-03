@@ -3,7 +3,6 @@
 namespace App\View\Components\Home;
 
 use Closure;
-use App\Models\Cart;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 

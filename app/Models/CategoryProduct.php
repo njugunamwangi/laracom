@@ -12,10 +12,11 @@ class CategoryProduct extends Model
     protected $table = 'category_product';
 
     public const CREATED_AT = null;
+
     public const UPDATED_AT = null;
 
     protected $fillable = [
         'category_id',
-        'product_id'
+        'product_id',
     ];
 }

@@ -3,14 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
 use App\Filament\Resources\UserResource\RelationManagers\OrdersRelationManager;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\Fieldset;
-use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
@@ -26,6 +24,7 @@ class UserResource extends Resource
     protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
+
     protected static ?string $navigationGroup = 'User Management';
 
     public static function form(Form $form): Form
@@ -141,42 +140,46 @@ class UserResource extends Resource
                             ->schema([
                                 TextEntry::make('email_verified_at')
                                     ->label('Email')
-                                    ->getStateUsing(function($record) {
-                                        return ($record->email_verified_at == NULL) ? 'Not Verified' : 'Verified';
+                                    ->getStateUsing(function ($record) {
+                                        return ($record->email_verified_at == null) ? 'Not Verified' : 'Verified';
                                     })
                                     ->badge()
                                     ->color(function ($state) {
-                                        if($state === 'Verified') {
+                                        if ($state === 'Verified') {
                                             return 'success';
                                         }
+
                                         return 'warning';
                                     })
                                     ->icon(function ($state) {
-                                        if($state === 'Verified') {
+                                        if ($state === 'Verified') {
                                             return 'heroicon-o-check-badge';
                                         }
+
                                         return 'heroicon-o-x-circle';
                                     }),
                                 TextEntry::make('two_factor_confirmed_at')
                                     ->label('Two Factor Authentication')
-                                    ->getStateUsing(function($record) {
-                                        return ($record->two_factor_confirmed_at == NULL) ? 'Not Verified' : 'Verified';
+                                    ->getStateUsing(function ($record) {
+                                        return ($record->two_factor_confirmed_at == null) ? 'Not Verified' : 'Verified';
                                     })
                                     ->badge()
                                     ->color(function ($state) {
-                                        if($state === 'Verified') {
+                                        if ($state === 'Verified') {
                                             return 'success';
                                         }
+
                                         return 'warning';
                                     })
                                     ->icon(function ($state) {
-                                        if($state === 'Verified') {
+                                        if ($state === 'Verified') {
                                             return 'heroicon-o-check-badge';
                                         }
+
                                         return 'heroicon-o-x-circle';
                                     }),
-                            ])
-                    ])
+                            ]),
+                    ]),
             ]);
     }
 

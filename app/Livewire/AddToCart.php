@@ -12,16 +12,19 @@ class AddToCart extends Component
 {
     public Product $product;
 
-    public function mount(Product $product) {
+    public function mount(Product $product)
+    {
         $this->product = $product;
     }
+
     public function render()
     {
         return view('livewire.add-to-cart');
     }
 
-    public function addToCart(int $productId) {
-        if (!Auth::check()) {
+    public function addToCart(int $productId)
+    {
+        if (! Auth::check()) {
             Toaster::info('Please login to proceed');
         } else {
 
@@ -32,12 +35,12 @@ class AddToCart extends Component
                     ->where('product_id', '=', $productId)
                     ->first();
 
-                if (!$model) {
+                if (! $model) {
 
                     Cart::create([
                         'user_id' => auth()->user()->id,
                         'product_id' => $productId,
-                        'quantity' => 1
+                        'quantity' => 1,
                     ]);
                     $this->dispatch('CartUpdated');
 

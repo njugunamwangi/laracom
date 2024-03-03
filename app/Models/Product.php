@@ -14,8 +14,8 @@ use Spatie\Sluggable\SlugOptions;
 class Product extends Model
 {
     use HasFactory;
-    use SoftDeletes;
     use HasSlug;
+    use SoftDeletes;
 
     protected $guarded = [];
 
@@ -26,11 +26,13 @@ class Product extends Model
             ->saveSlugsTo('slug');
     }
 
-    public function image(): BelongsTo {
+    public function image(): BelongsTo
+    {
         return $this->belongsTo(Media::class, 'image_id');
     }
 
-    public function productImage(): BelongsTo {
+    public function productImage(): BelongsTo
+    {
         return $this->belongsTo(Media::class, 'image_id', 'id');
     }
 
@@ -59,11 +61,12 @@ class Product extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function getDiscount() {
+    public function getDiscount()
+    {
         $diff = $this->list_price - $this->retail_price;
 
         $percent = $diff / $this->list_price;
 
-        return '-' . round($percent * 100) . '%';
+        return '-'.round($percent * 100).'%';
     }
 }

@@ -12,7 +12,8 @@ class Count extends Component
 
     protected $listeners = ['WishlistUpdated' => 'wishlistCount'];
 
-    public function wishlistCount() {
+    public function wishlistCount()
+    {
         if (Auth::check()) {
             return $this->wishlistCount = Wishlist::query()
                 ->where('user_id', '=', auth()->user()->id)

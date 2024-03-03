@@ -9,6 +9,7 @@ use Livewire\Component;
 class Count extends Component
 {
     public $orderCount;
+
     public function render()
     {
         $this->orderCount = $this->orderCount();
@@ -16,8 +17,9 @@ class Count extends Component
         return view('livewire.order.count', ['orderCount' => $this->orderCount]);
     }
 
-    public function orderCount() {
-        if(Auth::check()) {
+    public function orderCount()
+    {
+        if (Auth::check()) {
             return $this->orderCount = Order::query()
                 ->where('user_id', '=', auth()->user()->id)
                 ->count();

@@ -5,7 +5,6 @@ namespace App\Models;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Models\Media;
 use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use FilamentTiptapEditor\TiptapEditor;
@@ -33,33 +32,38 @@ class Category extends Model
         'slug',
         'image_id',
         'parent_id',
-        'description'
+        'description',
     ];
 
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('category')
             ->saveSlugsTo('slug');
     }
 
-    public function image(): BelongsTo {
+    public function image(): BelongsTo
+    {
         return $this->belongsTo(Media::class, 'image_id');
     }
 
-    public function parent(): BelongsTo {
+    public function parent(): BelongsTo
+    {
         return $this->belongsTo(Category::class, 'parent_id', 'id');
     }
 
-    public function children(): HasMany {
+    public function children(): HasMany
+    {
         return $this->hasMany(Category::class, 'parent_id', 'id');
     }
 
-    public function products() : BelongsToMany {
+    public function products(): BelongsToMany
+    {
         return $this->belongsToMany(Category::class);
     }
 
-    public static function getForm(): array {
+    public static function getForm(): array
+    {
         return [
             Grid::make(2)
                 ->schema([
@@ -70,7 +74,7 @@ class Category extends Model
                         ->relationship('parent', 'category')
                         ->searchable()
                         ->preload()
-                        ->label('Parent Category')
+                        ->label('Parent Category'),
                 ]),
             TextInput::make('slug')
                 ->required()
@@ -84,5 +88,4 @@ class Category extends Model
                 ->extraInputAttributes(['style' => 'min-height: 12rem;']),
         ];
     }
-
 }

@@ -9,7 +9,11 @@ use Masmerise\Toaster\Toaster;
 
 class Show extends Component
 {
-    public $cart, $subTotal = 0, $shipping = 0;
+    public $cart;
+
+    public $subTotal = 0;
+
+    public $shipping = 0;
 
     public function incrementQuantity(int $cartId)
     {
@@ -66,7 +70,7 @@ class Show extends Component
         }
 
         return view('livewire.cart.show', [
-            'cart' => $this->cart
+            'cart' => $this->cart,
         ]);
     }
 }

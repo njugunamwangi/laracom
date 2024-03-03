@@ -23,7 +23,7 @@ class Order extends Model
         'payment_method',
         'payment_status',
         'order_id',
-        'order_status'
+        'order_status',
     ];
 
     protected $casts = [
@@ -32,23 +32,28 @@ class Order extends Model
         'payment_status' => PaymentStatus::class,
     ];
 
-    public function user(): BelongsTo {
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function items(): HasMany {
+    public function items(): HasMany
+    {
         return $this->hasMany(OrderItem::class, 'order_id', 'id');
     }
 
-    public function details(): HasOne {
+    public function details(): HasOne
+    {
         return $this->hasOne(OrderDetail::class, 'order_id', 'id');
     }
 
-    public function date() {
+    public function date()
+    {
         return $this->created_at->format('F jS, Y');
     }
 
-    public function payments(): HasMany {
+    public function payments(): HasMany
+    {
         return $this->hasMany(Payment::class);
     }
 }

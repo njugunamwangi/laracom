@@ -21,7 +21,7 @@ class UserObserver
                 ->title('New user registration')
                 ->warning()
                 ->icon('heroicon-o-user-plus')
-                ->body($user->name . ' created an account')
+                ->body($user->name.' created an account')
                 ->actions([
                     Action::make('markAsRead')
                         ->button()

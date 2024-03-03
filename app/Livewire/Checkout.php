@@ -11,9 +11,27 @@ use Livewire\Component;
 
 class Checkout extends Component
 {
-    public $cart, $subTotal, $shipping = 0;
+    public $cart;
 
-    public $name, $email, $phone, $address1, $address2, $city, $state, $zipcode;
+    public $subTotal;
+
+    public $shipping = 0;
+
+    public $name;
+
+    public $email;
+
+    public $phone;
+
+    public $address1;
+
+    public $address2;
+
+    public $city;
+
+    public $state;
+
+    public $zipcode;
 
     public function rules()
     {
@@ -72,7 +90,7 @@ class Checkout extends Component
         if ($order && $orderDetails) {
             Cart::query()->where('user_id', '=', auth()->user()->id)->delete();
 
-            return redirect()->to('/order/' . $order->tracking_no);
+            return redirect()->to('/order/'.$order->tracking_no);
         }
     }
 
@@ -81,7 +99,6 @@ class Checkout extends Component
         $this->cart = Cart::query()
             ->where('user_id', '=', auth()->user()->id)
             ->get();
-
 
         return view('livewire.checkout', [
             'cart' => $this->cart,

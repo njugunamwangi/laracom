@@ -31,7 +31,6 @@ Route::middleware([
     })->name('dashboard');
 });
 
-
 Route::get('/cart', [SiteController::class, 'cart'])->name('cart');
 Route::get('/checkout', [SiteController::class, 'checkout'])->name('checkout');
 Route::get('/orders', [OrderController::class, 'index'])->name('orders');

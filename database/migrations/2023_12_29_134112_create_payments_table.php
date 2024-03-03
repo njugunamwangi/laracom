@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('reference');
             $table->string('currency');
             $table->string('ip_address');
-            $table->decimal('amount', 10,2);
+            $table->decimal('amount', 10, 2);
             $table->timestamps();
         });
     }

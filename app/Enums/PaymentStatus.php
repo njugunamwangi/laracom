@@ -1,17 +1,19 @@
 <?php
 
-    namespace App\Enums;
+namespace App\Enums;
 
-    enum PaymentStatus: string {
-        case NotPaid = 'Not Paid';
-        case Paid = 'Paid';
-        case Failed = 'Failed';
+enum PaymentStatus: string
+{
+    case NotPaid = 'Not Paid';
+    case Paid = 'Paid';
+    case Failed = 'Failed';
 
-        public function getColor():string {
-            return match($this) {
-                self::NotPaid => 'primary',
-                self::Paid => 'success',
-                self::Failed => 'warning',
-            };
-        }
+    public function getColor(): string
+    {
+        return match ($this) {
+            self::NotPaid => 'primary',
+            self::Paid => 'success',
+            self::Failed => 'warning',
+        };
     }
+}

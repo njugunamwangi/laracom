@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Brand;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -45,7 +44,7 @@ class BrandSeeder extends Seeder
             ],
         ];
 
-        foreach($brands as $brand) {
+        foreach ($brands as $brand) {
             Brand::create([
                 'brand' => $brandName = $brand['brand'],
                 'slug' => Str::slug($brandName),

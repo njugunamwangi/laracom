@@ -20,10 +20,10 @@ class User extends Authenticatable implements FilamentUser
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
-    use Notifiable;
-    use TwoFactorAuthenticatable;
-    use SoftDeletes;
     use HasRoles;
+    use Notifiable;
+    use SoftDeletes;
+    use TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -66,15 +66,18 @@ class User extends Authenticatable implements FilamentUser
         'profile_photo_url',
     ];
 
-    public function canAccessPanel(Panel $panel): bool {
+    public function canAccessPanel(Panel $panel): bool
+    {
         return $this->hasRole(Role::IS_ADMIN);
     }
 
-    public function payments(): HasMany {
+    public function payments(): HasMany
+    {
         return $this->hasMany(Payment::class);
     }
 
-    public function orders(): HasMany {
+    public function orders(): HasMany
+    {
         return $this->hasMany(Order::class);
     }
 }
