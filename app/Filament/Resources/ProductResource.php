@@ -13,9 +13,11 @@ use Filament\Forms;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use FilamentTiptapEditor\TiptapEditor;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -50,8 +52,9 @@ class ProductResource extends Resource
                                 Forms\Components\TextInput::make('model_number')
                                     ->maxLength(2000),
                             ]),
-                        Forms\Components\RichEditor::make('description')
-                            ->columnSpanFull(),
+                        TiptapEditor::make('description')
+                            ->columnSpanFull()
+                            ->extraInputAttributes(['style' => 'min-height: 12rem;']),
                         Grid::make(2)
                             ->schema([
                                 Forms\Components\TextInput::make('list_price')
@@ -78,8 +81,9 @@ class ProductResource extends Resource
                                     ->label('Published')
                                     ->required(),
                             ]),
-                        Forms\Components\RichEditor::make('warranty')
-                            ->columnSpanFull(),
+                        TiptapEditor::make('warranty')
+                            ->columnSpanFull()
+                            ->extraInputAttributes(['style' => 'min-height: 12rem;']),
                     ])->columnSpan(8),
                 Section::make()
                     ->schema([
@@ -87,13 +91,6 @@ class ProductResource extends Resource
                             ->relationship('image', 'name')
                             ->label('Image')
                             ->required(),
-                        Forms\Components\Select::make('category_id')
-                            ->relationship('categories', 'category')
-                            ->required()
-                            ->createOptionForm(Category::getForm())
-                            ->preload()
-                            ->multiple()
-                            ->searchable(),
                         Forms\Components\Select::make('brand_id')
                             ->relationship('brand', 'brand')
                             ->options(Brand::all()
@@ -103,6 +100,13 @@ class ProductResource extends Resource
                             ->editOptionForm(Brand::getForm())
                             ->required()
                             ->preload()
+                            ->searchable(),
+                        Forms\Components\CheckboxList::make('category_id')
+                            ->label('Category')
+                            ->relationship('categories', 'category')
+                            ->bulkToggleable()
+                            ->required()
+                            ->columns(2)
                             ->searchable(),
                     ])->columnSpan(4),
             ])->columns(12);
