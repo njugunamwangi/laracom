@@ -65,10 +65,10 @@ return [
     'visibility' => 'public',
     'preserve_file_names' => false,
     'max_file_size' => 2042,
-    'image_resize_mode' => null,
-    'image_crop_aspect_ratio' => null,
-    'image_resize_target_width' => null,
-    'image_resize_target_height' => null,
+    'image_resize_mode' => 'force',
+    'image_crop_aspect_ratio' => '16:9',
+    'image_resize_target_width' => 480,
+    'image_resize_target_height' => 720,
     'use_relative_paths' => true,
 
     /*
