@@ -1,124 +1,120 @@
 <div>
-    <div class="mb-6 flex flex-col gap-4 sm:mb-8 md:gap-6">
+    @if($cart && $cart->count() > 0)
+        <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+            <div class="flex items-start justify-between">
+                <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Shopping cart</h2>
+                <div class="ml-3 flex h-full items-center">
+                <button @click="cart = !cart" type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500">
+                    <span class="absolute -inset-0.5"></span>
+                    <span class="sr-only">Close panel</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                </div>
+            </div>
 
-        @if($cart && $cart->count() > 0)
-            @foreach($cart as $item)
-                <!-- product - start -->
-                <div class="flex flex-wrap gap-x-4 overflow-hidden rounded-lg border sm:gap-y-4 lg:gap-6">
-                    <a href="{{ route('product', $item->product) }}" wire:navigate
-                       class="group relative block h-24 w-16 overflow-hidden bg-gray-100 sm:h-56 sm:w-40">
-                        <img src="{{ empty($item->product->image_id) ? "https://placehold.co/600x600?text=". $item->product->product  : url('/storage/' . $item->product->productImage->path) }}"
-                             loading="lazy"
-                             alt="{{ $item->product->product }}"
-                             class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-                    </a>
-
-                    <div class="flex flex-1 flex-col justify-between py-4">
-                        <div>
-                            <a href="{{ route('product', $item->product) }}" wire:navigate
-                               class="mb-1 inline-block text-lg font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-xl">
-                                {{ $item->product->product }}
-                            </a>
-
-                        </div>
-
-                        <div>
-                            <span class="mb-1 block font-bold text-gray-800 md:text-lg">Kes {{ number_format( $item->product->retail_price , 2 ) }}</span>
-
-                            <span class="flex items-center gap-1 text-sm text-gray-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-
-                                In stock
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="flex w-full justify-between border-t p-4 sm:w-auto sm:border-none sm:pl-0 lg:p-6 lg:pl-0">
-                        <div class="flex flex-col items-start gap-2">
-                            <div class="flex h-12 w-24 overflow-hidden rounded border">
-                                <input
-                                    type="number"
-                                    value="{{ $item->quantity }}"
-                                    disabled
-                                    class="w-full px-4 py-2 outline-none ring-inset ring-indigo-300 transition duration-100 focus:ring" />
-
-                                <div class="flex flex-col divide-y border-l">
-                                    <button wire:click="incrementQuantity({{ $item->id }})"
-                                            wire:loading.attr="disabled"
-                                            class="flex w-6 flex-1 select-none items-center justify-center bg-white leading-none transition duration-100 hover:bg-gray-100 active:bg-gray-200">+</button>
-                                    <button wire:click="decrementQuantity({{ $item->id }})"
-                                            wire:loading.attr="disabled"
-                                            class="flex w-6 flex-1 select-none items-center justify-center bg-white leading-none transition duration-100 hover:bg-gray-100 active:bg-gray-200">-</button>
-                                </div>
+            <div class="mt-8">
+                <div class="flow-root">
+                    <ul role="list" class="-my-6 divide-y divide-gray-200">
+                        @foreach($cart as $item)
+                        <li class="flex py-6">
+                            <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                <img
+                                    src="{{ empty($item->product->image_id) ? "https://placehold.co/600x600?text=". $item->product->product  : url('/storage/' . $item->product->productImage->path) }}"
+                                    alt="{{ $item->product->product }}"
+                                    class="h-full w-full object-cover object-center">
                             </div>
 
-                            <button wire:loading.attr="disabled"
-                                    wire:click="removeItem({{ $item->id }})"
-                                class="select-none text-sm font-semibold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">
-                                <span wire:loading.remove wire:target="removeItem({{ $item->id }})">
-                                    Delete
-                                </span>
-                                <span wire:loading wire:target="removeItem({{ $item->id }})">
-                                    Delete
-                                </span>
-                            </button>
-                        </div>
+                            <div class="ml-4 flex flex-1 flex-col">
+                                <div>
+                                <div class="flex justify-between text-base font-medium text-gray-900">
+                                    <h3>
+                                        <a
+                                            href="{{ route('product', $item->product) }}"
+                                            wire:navigate>
+                                            {{ $item->product->product }}
+                                        </a>
+                                    </h3>
+                                    <!-- <p class="ml-4">Kes {{ number_format($item->product->retail_price, 2) }}</p> -->
+                                    <p class="ml-4">
+                                        Kes {{ number_format( $item->product->retail_price * $item->quantity, 2 ) }}
+                                        @php $subTotal += $item->product->retail_price * $item->quantity @endphp
+                                    </p>
+                                </div>
+                                <p class="mt-1 text-sm text-gray-500">{{ $item->product->brand->brand }}</p>
+                                </div>
+                                <div class="flex flex-1 items-end justify-between text-sm">
+                                <p class="text-gray-500">Qty 1</p>
 
-                        <div class="ml-4 pt-3 md:ml-8 md:pt-2 lg:ml-16">
-                            <span class="block font-bold text-gray-800 md:text-lg">
-                                Kes {{ number_format( $item->product->retail_price * $item->quantity, 2 ) }}
-                                @php $subTotal += $item->product->retail_price * $item->quantity @endphp
-                            </span>
-                        </div>
-                    </div>
+                                <div class="flex">
+                                    <button
+                                        wire:loading.attr="disabled"
+                                        wire:click="removeItem({{ $item->id }})"
+                                        type="button"
+                                        class="font-medium text-indigo-600 hover:text-indigo-500">
+                                        Remove
+                                    </button>
+                                </div>
+                                </div>
+                            </div>
+                        </li>
+                        @endforeach
+                    </ul>
                 </div>
-                <!-- product - end -->
+            </div>
+        </div>
 
-            @endforeach
-
-            <!-- totals - start -->
-            <div class="flex flex-col items-end gap-4">
-                <div class="w-full rounded-lg bg-gray-100 p-4 sm:max-w-xs">
-                    <div class="space-y-1">
-                        <div class="flex justify-between gap-4 text-gray-500">
-                            <span>Subtotal</span>
-                            <span>Kes {{ number_format($subTotal, 2) }}</span>
-                        </div>
-
-                        <div class="flex justify-between gap-4 text-gray-500">
-                            <span>Shipping</span>
-                            <span>Kes {{ number_format($shipping, 2) }}</span>
-                        </div>
-                    </div>
-
-                    <div class="mt-4 border-t pt-4">
-                        <div class="flex items-start justify-between gap-4 text-gray-800">
-                            <span class="text-lg font-bold">Total</span>
-
-                            <span class="flex flex-col items-end">
-                            <span class="text-lg font-bold">Kes {{ number_format($subTotal + $shipping, 2) }}</span>
-                            <span class="text-sm text-gray-500">including VAT</span>
-                        </span>
-                        </div>
-                    </div>
-                </div>
-
+        <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
+            <div class="flex justify-between text-base font-medium text-gray-900">
+                <p>Subtotal</p>
+                <p>Kes {{ number_format($subTotal, 2) }}</p>
+            </div>
+            <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+            <div class="mt-6">
                 <a
-                    href="{{ route('checkout') }}" wire:navigate
-                    class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">
-                    Check out
+                    href="{{ route('checkout') }}"
+                    wire:navigate
+                    class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+                    Checkout
                 </a>
             </div>
-            <!-- totals - end -->
+            <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
+                <p>
+                or
+                <button @click="cart = false" type="button" class="font-medium text-indigo-600 hover:text-indigo-500">
+                    Continue Shopping
+                    <span aria-hidden="true"> &rarr;</span>
+                </button>
+                </p>
+            </div>
+        </div>
 
-        @else
-            <div>Your cart is empty</div>
-        @endif
+    @else
 
+        <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+            <div class="flex items-start justify-between">
+                <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Shopping cart</h2>
+                <div class="ml-3 flex h-full items-center">
+                <button @click="cart = !cart" type="button" class="relative -m-2 p-2 text-gray-400 hover:text-gray-500">
+                    <span class="absolute -inset-0.5"></span>
+                    <span class="sr-only">Close panel</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                </div>
+            </div>
 
-    </div>
+            <div class="mt-8">
+                <div class="flex justify-between text-base font-medium text-gray-900">
+                    <h3>
+                        Your cart is empty
+                    </h3>
+                </div>
+            </div>
+        </div>
 
+    @endif
 
 </div>
