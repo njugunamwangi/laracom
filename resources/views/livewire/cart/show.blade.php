@@ -18,47 +18,47 @@
                 <div class="flow-root">
                     <ul role="list" class="-my-6 divide-y divide-gray-200">
                         @foreach($cart as $item)
-                        <li class="flex py-6">
-                            <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                <img
-                                    src="{{ empty($item->product->image_id) ? "https://placehold.co/600x600?text=". $item->product->product  : url('/storage/' . $item->product->productImage->path) }}"
-                                    alt="{{ $item->product->product }}"
-                                    class="h-full w-full object-cover object-center">
-                            </div>
+                            <li class="flex py-6">
+                                <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                    <img
+                                        src="{{ empty($item->product->image_id) ? "https://placehold.co/600x600?text=". $item->product->product  : url('/storage/' . $item->product->productImage->path) }}"
+                                        alt="{{ $item->product->product }}"
+                                        class="h-full w-full object-cover object-center">
+                                </div>
 
-                            <div class="ml-4 flex flex-1 flex-col">
-                                <div>
-                                <div class="flex justify-between text-base font-medium text-gray-900">
-                                    <h3>
-                                        <a
-                                            href="{{ route('product', $item->product) }}"
-                                            wire:navigate>
-                                            {{ $item->product->product }}
-                                        </a>
-                                    </h3>
-                                    <!-- <p class="ml-4">Kes {{ number_format($item->product->retail_price, 2) }}</p> -->
-                                    <p class="ml-4">
-                                        Kes {{ number_format( $item->product->retail_price * $item->quantity, 2 ) }}
-                                        @php $subTotal += $item->product->retail_price * $item->quantity @endphp
-                                    </p>
-                                </div>
-                                <p class="mt-1 text-sm text-gray-500">{{ $item->product->brand->brand }}</p>
-                                </div>
-                                <div class="flex flex-1 items-end justify-between text-sm">
-                                <p class="text-gray-500">Qty 1</p>
+                                <div class="ml-4 flex flex-1 flex-col">
+                                    <div>
+                                    <div class="flex justify-between text-base font-medium text-gray-900">
+                                        <h3>
+                                            <a
+                                                href="{{ route('product', $item->product) }}"
+                                                wire:navigate>
+                                                {{ $item->product->product }}
+                                            </a>
+                                        </h3>
+                                        <!-- <p class="ml-4">Kes {{ number_format($item->product->retail_price, 2) }}</p> -->
+                                        <p class="ml-4">
+                                            Kes {{ number_format( $item->product->retail_price * $item->quantity, 2 ) }}
+                                            @php $subTotal += $item->product->retail_price * $item->quantity @endphp
+                                        </p>
+                                    </div>
+                                    <p class="mt-1 text-sm text-gray-500">{{ $item->product->brand->brand }}</p>
+                                    </div>
+                                    <div class="flex flex-1 items-end justify-between text-sm">
+                                    <p class="text-gray-500">Qty 1</p>
 
-                                <div class="flex">
-                                    <button
-                                        wire:loading.attr="disabled"
-                                        wire:click="removeItem({{ $item->id }})"
-                                        type="button"
-                                        class="font-medium text-indigo-600 hover:text-indigo-500">
-                                        Remove
-                                    </button>
+                                    <div class="flex">
+                                        <button
+                                            wire:loading.attr="disabled"
+                                            wire:click="removeItem({{ $item->id }})"
+                                            type="button"
+                                            class="font-medium text-indigo-600 hover:text-indigo-500">
+                                            Remove
+                                        </button>
+                                    </div>
+                                    </div>
                                 </div>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
                         @endforeach
                     </ul>
                 </div>

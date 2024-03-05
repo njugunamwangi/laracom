@@ -15,6 +15,8 @@ class Show extends Component
 
     public $shipping = 0;
 
+    protected $listeners = ['CartUpdated' => 'cart'];
+
     public function incrementQuantity(int $cartId)
     {
         $model = Cart::query()
