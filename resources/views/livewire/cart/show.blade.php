@@ -81,11 +81,14 @@
             </div>
             <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
                 <p>
-                or
-                <button @click="cart = false" type="button" class="font-medium text-indigo-600 hover:text-indigo-500">
-                    Continue Shopping
-                    <span aria-hidden="true"> &rarr;</span>
-                </button>
+                    <button wire:click="clearCart" type="button" class="font-medium text-red-600 hover:text-indigo-500">
+                        Clear cart
+                    </button>
+                    or
+                    <button @click="cart = false" type="button" class="font-medium text-indigo-600 hover:text-indigo-500">
+                        Continue Shopping
+                        <span aria-hidden="true"> &rarr;</span>
+                    </button>
                 </p>
             </div>
         </div>
