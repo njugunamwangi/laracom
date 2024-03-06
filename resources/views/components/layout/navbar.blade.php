@@ -145,6 +145,9 @@
                                 <a href="{{ route('login') }}" class="text-sm font-medium text-white hover:text-gray-100">Sign in</a>
                                 <a href="{{ route('register') }}" class="text-sm font-medium text-white hover:text-gray-100">Create an account</a>
                             @else
+                                @if(auth()->user()->hasRole(App\Models\Role::IS_ADMIN))
+                                    <a href="/admin" wire:navigate class="text-sm font-medium text-white hover:text-gray-100">Admin</a>
+                                @endif
                                 <a href="#" class="text-sm font-medium text-white hover:text-gray-100">Account</a>
                                 <form method="POST" action="{{ route('logout') }}" x-data>
 
