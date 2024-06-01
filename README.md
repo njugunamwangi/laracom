@@ -11,14 +11,6 @@
 - [TailwindCSS](https://tailwindcss.com).
 - [FilamentPHP V3](https://filamentphp.com).
 
-## Prerequisites
-
-- Admin credentials
-```bash
-email: admin@admin.com
-password: password
-```
-
 ## Installation
 - Clone the repository
 ```bash
@@ -29,11 +21,6 @@ git clone https://github.com/njugunamwangi/laracom.git
 copy .env.example .env
 ```
 
-- Run migrations and seed admin user
-```bash
-php artisan migrate --seed
-```
-
 - Install composer dependencies bu running composer install
  ```bash
 composer install
@@ -41,6 +28,11 @@ composer install
 - Install npm dependencies
 ```bash
 npm install
+```
+
+- Run migrations and seed admin user
+```bash
+php artisan migrate --seed
 ```
 
 - Generate laravel application key using 
@@ -60,6 +52,18 @@ npm run dev
 - Storage
 ```bash
 php artisan storage:link
+```
+## Prerequisites
+
+- Admin credentials
+```bash
+email: admin@admin.com
+password: password
+```
+
+- Admin url
+```bash
+http://admin.laracom.test
 ```
 
 ## License
